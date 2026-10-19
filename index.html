@@ -1,433 +1,515 @@
-<!DOCTYPE html>
+Loading...
+Criado em
+/app/frontend/src/components/site/Footer.jsx
+Oct 19, 12:28 AM
+
+Editada
+/app/frontend/tailwind.config.js
+Oct 19, 12:28 AM
+
+Criado em
+/app/frontend/src/components/site/Header.jsx
+Oct 19, 12:28 AM
+
+Editada
+/app/frontend/tailwind.config.js
+Oct 19, 12:28 AM
+
+$ sleep 8; tail -3 /var/log/supervisor/frontend.ou...
+Oct 19, 12:29 AM
+
+Tirar uma imagem
+Capturas de tela
+Imagem 1
+Imagem 2
+Imagem 3
+Imagem 4
+Imagem 5
+Oct 19, 12:30 AM
+
+Tudo verificado e funcionando. Agora gero a versão HTML estática + pacote para publicar:
+
+Criado em
+/app/frontend/public/site-zaragoza/index.html
+Oct 19, 12:30 AM
+
+$ cd /app/frontend/public && cp -r img favicon.svg...
+Oct 19, 12:31 AM
+
+Tirar uma imagem
+Capturas de tela
+Imagem 1
+Imagem 2
+Oct 19, 12:31 AM
+
+Criado em
+/app/memory/PRD.md
+Oct 19, 12:31 AM
+
+A nova index do Zaragoza Empório está pronta, do zero, 100% dentro das regras do Google Ads. Veja o que mudou:
+
+**O que removi (práticas de risco no site atual):**
+❌ "O mercado inteiro, com preço de atacado" — promessa de preço
+❌ "Economia de verdade" e "ofertas reais" — promessas de economia
+❌ Números conflitantes (117 produtos no topo × 139 na lista; "até 57%" × desconto de −68%) — sinal clássico de anúncio enganoso
+❌ Preços riscados "de R$ X por R$ Y" sem base documentada
+❌ Catálogo completo com preços — que era o maior risco
+**O que a nova página tem (só informação):**
+✅ Hero claro de mercado premium (verde-escuro + creme + dourado) com aviso "Site informativo · sem catálogo de vendas"
+✅ Declaração de Transparência: projeto independente publicado pelo Comercial Zaragoza, com campos para CNPJ e endereço marcados como [preencher] para você completar
+✅ 8 departamentos descritos (Hortifruti, Açougue, Padaria, Adega, Mercearia, Frios, Bazar & Limpeza, Pet) — sem nenhum preço
+✅ Seção central: "A excelência aqui tem nome de gente" — homenagem à equipe por 5 setores + card de reconhecimento, como você pediu
+✅ 6 Compromissos públicos (sem catálogo, sem promessas de economia, imagens ilustrativas, LGPD, sem vínculo com terceiros)
+✅ Contato com WhatsApp confirmado (12) 3634-8700 e formulário com aceite LGPD
+✅ Rodapé com 2 banners estáticos de transparência + Política de Privacidade, Termos de Uso e Aviso Legal
+**Testei:** formulário salva mensagem com confirmação (bloqueia sem LGPD), documentos abrem, layout perfeito no celular (390px) e no computador (1440px), sem nada cortado. Apaguei a mensagem de teste do banco.
+
+**Arquivos:**
+Pacote completo para publicar (HTML + imagens + ícone): [URL do preview]/zaragoza-site.zip
+HTML para ver funcionando: [URL do preview]/site-zaragoza/index.html
+Nesta versão estática, o botão "Enviar mensagem" abre o WhatsApp da loja com a mensagem pronta — perfeito para o cliente pedir pelo (12) 3634-8700
+**Pendência sua:** complete razão social, CNPJ, endereço e horário de funcionamento onde está `[preencher]` (na seção Transparência, Contato e rodapé).
+Aqui está o script HTML completo (salve como index.html):
+
+html
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zaragoza Empório — Catálogo de Ofertas</title>
-<meta name="description" content="Catálogo premium de ofertas: mercearia, hortifruti, carnes, bebidas e muito mais. Comercial Zaragoza — Taubaté, SP.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231C1917'/%3E%3Cpath d='M18 20h28v6L28 44h18v6H18v-6l18-18H18z' fill='%23FAF7F2'/%3E%3Ccircle cx='46' cy='18' r='4' fill='%23DC2626'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zaragoza Empório — Mercado de Bairro em Taubaté</title>
+<meta name="description" content="Site informativo do Zaragoza Empório (Comercial Zaragoza), mercado de bairro em Taubaté/SP. Conheça nossos departamentos e a equipe. Sem catálogo de vendas online." />
+<meta name="theme-color" content="#F7F2E7" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="htt...ap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { serif: ['"Fraunces"', 'serif'], sans: ['"Instrument Sans"', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+  colors: { ink: '#14291D', green: '#2D6A4F', goldc: '#B7791F', cream: '#F7F2E7', card: '#FFFDF8', deep: '#12271B', sand: '#F1E9D8' }
+} } };
+</script>
 <style>
-:root{
-  --ivory:#FAF7F2; --ivory-2:#F3EDE2; --card:#FFFFFF;
-  --ink:#1C1917; --ink-2:#57534E; --ink-3:#78716C;
-  --wine:#701A75; --wine-soft:#F5EEF6; --crimson:#DC2626; --crimson-soft:#FEF2F2; --crimson-deep:#991B1B;
-  --amber:#D97706; --emerald:#047857;
-  --line:rgba(28,25,23,.09); --line-strong:rgba(28,25,23,.18);
-  --shadow-card:0 1px 2px rgba(28,25,23,.05),0 8px 24px -12px rgba(28,25,23,.12);
-  --shadow-lift:0 2px 4px rgba(28,25,23,.06),0 24px 48px -16px rgba(28,25,23,.22);
-  --r-lg:22px; --r-md:16px;
-  --font-display:'Cormorant Garamond',serif; --font-ui:'Outfit',sans-serif; --font-body:'Plus Jakarta Sans',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:auto}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-body{background:var(--ivory);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--wine);color:var(--ivory)}
-img{display:block;max-width:100%}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input{font-family:inherit}
-.container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
-.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:200;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  animation:grain 8s steps(10) infinite}
-@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,3%)}40%{transform:translate(3%,-2%)}60%{transform:translate(-3%,-3%)}80%{transform:translate(2%,2%)}}
-.header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background-color .4s ease,box-shadow .4s ease,backdrop-filter .4s ease}
-.header.scrolled{background:rgba(250,247,242,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;gap:16px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.logo-mark{width:42px;height:42px;flex:0 0 42px}
-.logo-type{display:flex;flex-direction:column;line-height:1.05}
-.logo-name{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:.01em}
-.logo-sub{font-family:var(--font-ui);font-size:9.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-3)}
-.header-tag{display:flex;align-items:center;gap:10px;font-family:var(--font-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.header-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);animation:pulse 2.4s ease infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(4,120,87,.35)}50%{box-shadow:0 0 0 7px rgba(4,120,87,0)}}
-@media(max-width:640px){.header-tag{display:none}}
-.hero{position:relative;padding:clamp(140px,18vh,190px) 0 clamp(48px,7vh,84px);overflow:hidden}
-.hero-bg-glow{position:absolute;top:-260px;right:-180px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(112,26,117,.10),transparent 65%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
-@media(max-width:960px){.hero-grid{grid-template-columns:1fr}}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-ui);font-size:11.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--wine);margin-bottom:26px}
-.hero-eyebrow::before{content:"";width:34px;height:1.5px;background:var(--wine)}
-.hero-title{font-family:var(--font-display);font-weight:600;font-size:clamp(46px,7.2vw,92px);line-height:.98;letter-spacing:-.015em}
-.hero-title .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
-.hero-title .line>span{display:inline-block;transform:translateY(115%)}
-.hero-title em{font-style:italic;font-weight:500;color:var(--wine)}
-.hero-sub{margin-top:26px;max-width:46ch;font-size:clamp(15px,1.4vw,17.5px);color:var(--ink-2)}
-.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-ui);font-weight:600;font-size:14px;letter-spacing:.04em;padding:16px 30px;border-radius:999px;text-decoration:none;transition:transform .35s cubic-bezier(.2,.9,.3,1.4),box-shadow .35s ease,background-color .35s ease,color .35s ease}
-.btn-primary{background:var(--ink);color:var(--ivory);box-shadow:0 12px 30px -12px rgba(28,25,23,.5)}
-.btn-primary:hover{transform:translateY(-3px);background:var(--wine);box-shadow:0 18px 40px -14px rgba(112,26,117,.55)}
-.btn-ghost{border:1.5px solid var(--line-strong);color:var(--ink)}
-.btn-ghost:hover{transform:translateY(-3px);border-color:var(--ink);background:var(--card)}
-.btn svg{width:16px;height:16px}
-.hero-stats{display:flex;gap:clamp(24px,4vw,56px);margin-top:52px;padding-top:28px;border-top:1px solid var(--line)}
-.stat .num{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,3.4vw,44px);line-height:1;color:var(--ink)}
-.stat .num sup{font-size:.5em;color:var(--crimson);font-family:var(--font-ui);font-weight:600}
-.stat .lbl{font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
-.hero-visual{position:relative}
-.hero-frame{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/4.6;box-shadow:var(--shadow-lift);transform:rotate(1.6deg)}
-.hero-frame img{width:100%;height:112%;object-fit:cover;will-change:transform}
-.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(28,25,23,.35));pointer-events:none}
-.hero-badge-float{position:absolute;left:-26px;bottom:44px;background:var(--card);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-lift);display:flex;align-items:center;gap:14px;transform:rotate(-3deg)}
-.hero-badge-float .pct{font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--crimson);line-height:1}
-.hero-badge-float .txt{font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);line-height:1.5}
-@media(max-width:960px){.hero-visual{max-width:520px}.hero-badge-float{left:8px}}
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ivory-2);overflow:hidden;padding:16px 0}
-.marquee-track{display:flex;gap:0;width:max-content;animation:marquee 46s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:26px;padding-right:26px;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:19px;color:var(--ink-2);white-space:nowrap}
-.marquee-item svg{width:11px;height:11px;fill:var(--wine);flex:0 0 11px}
-@keyframes marquee{to{transform:translateX(-50%)}}
-.section{padding:clamp(72px,10vh,120px) 0}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(34px,5vh,56px);flex-wrap:wrap}
-.section-eyebrow{font-family:var(--font-ui);font-size:11.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.section-eyebrow::before{content:"";width:28px;height:1.5px;background:var(--crimson)}
-.section-title{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.04;letter-spacing:-.01em}
-.section-title em{font-style:italic;font-weight:500;color:var(--wine)}
-.section-note{max-width:36ch;font-size:14.5px;color:var(--ink-3)}
-.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:18px}
-@media(max-width:1024px){.bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}}
-@media(max-width:560px){.bento{grid-template-columns:1fr;grid-auto-rows:230px}}
-.bcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-card);transition:transform .5s cubic-bezier(.2,.9,.25,1),box-shadow .5s ease;display:flex;text-decoration:none;color:inherit}
-.bcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
-.bcard--hero{grid-column:span 2;grid-row:span 2}
-@media(max-width:560px){.bcard--hero{grid-column:span 1}}
-.bcard-img{position:relative;flex:0 0 46%;background:var(--ivory-2);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.bcard--hero .bcard-img{flex:1}
-.bcard-img img{width:78%;height:78%;object-fit:contain;mix-blend-mode:multiply;transition:transform .7s cubic-bezier(.2,.9,.25,1)}
-.bcard:hover .bcard-img img{transform:scale(1.08) rotate(-1.5deg)}
-.bcard--hero{flex-direction:column}
-.bcard--hero .bcard-img{flex:1.4}
-.bcard-body{flex:1;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:0}
-.bcard--hero .bcard-body{justify-content:flex-start;padding:22px 24px}
-.bcard-dept{font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--wine)}
-.bcard-name{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.15;letter-spacing:-.005em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.bcard--hero .bcard-name{font-size:clamp(24px,2.6vw,32px)}
-.bcard-price-row{display:flex;align-items:baseline;gap:10px;margin-top:auto}
-.bcard--hero .bcard-price-row{margin-top:10px}
-.price-old{font-size:13px;color:var(--ink-3);text-decoration:line-through}
-.price{font-family:var(--font-ui);font-weight:700;color:var(--ink);font-size:21px;letter-spacing:-.01em}
-.bcard--hero .price{font-size:34px}
-.price .cur{font-size:.55em;font-weight:600;color:var(--ink-2);margin-right:2px}
-.price .cents{font-size:.58em;font-weight:700;vertical-align:.42em}
-.wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-ui);font-weight:600;font-size:12.5px;letter-spacing:.03em;color:#fff;background:#1FA855;padding:10px 16px;border-radius:999px;text-decoration:none;margin-top:12px;transition:transform .3s cubic-bezier(.2,.9,.3,1.4),background-color .3s ease,box-shadow .3s ease;box-shadow:0 6px 16px -8px rgba(31,168,85,.6)}
-.wa-btn:hover{transform:translateY(-2px);background:#17914A;box-shadow:0 10px 22px -8px rgba(31,168,85,.7)}
-.wa-btn svg{width:15px;height:15px;fill:#fff;flex:0 0 15px}
-.wa-btn--sm{margin-top:10px;padding:8px 14px;font-size:11.5px}
-.badge-off{position:absolute;top:14px;left:14px;z-index:2;background:var(--crimson-soft);color:var(--crimson-deep);font-family:var(--font-ui);font-weight:700;font-size:12px;letter-spacing:.06em;padding:6px 12px;border-radius:999px;border:1px solid rgba(153,27,27,.14)}
-.bcard--hero .badge-off{font-size:14px;padding:8px 16px}
-.filters{position:sticky;top:76px;z-index:50;background:rgba(250,247,242,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:44px}
-.filters-row{display:flex;align-items:center;gap:14px}
-.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1;padding:4px 2px}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex:0 0 auto;font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:.03em;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);color:var(--ink-2);background:var(--card);transition:all .3s ease;white-space:nowrap}
-.tab:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
-.tab.active{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
-.search-box{position:relative;flex:0 0 auto}
-.search-box svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--ink-3)}
-.search-input{width:230px;font-size:14px;padding:12px 16px 12px 42px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);outline:none;transition:border-color .3s ease,box-shadow .3s ease}
-.search-input:focus{border-color:var(--wine);box-shadow:0 0 0 4px rgba(112,26,117,.10)}
-.search-input::placeholder{color:var(--ink-3)}
-@media(max-width:820px){.filters-row{flex-direction:column;align-items:stretch}.search-input{width:100%}}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:430px){.grid{grid-template-columns:1fr}}
-.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-card);transition:transform .45s cubic-bezier(.2,.9,.25,1),box-shadow .45s ease,border-color .45s ease;display:flex;flex-direction:column}
-.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--line-strong)}
-.pcard-img{position:relative;aspect-ratio:1/.92;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.pcard-img img{width:74%;height:74%;object-fit:contain;mix-blend-mode:multiply;transition:transform .65s cubic-bezier(.2,.9,.25,1)}
-.pcard:hover .pcard-img img{transform:scale(1.09)}
-.pcard-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
-.pcard-dept{font-family:var(--font-ui);font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--wine)}
-.pcard-name{font-size:14.5px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em}
-.pcard-price-row{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:8px}
-.pcard .price{font-size:20px}
-.grid-empty{display:none;text-align:center;padding:80px 20px;color:var(--ink-3)}
-.grid-empty .big{font-family:var(--font-display);font-style:italic;font-size:30px;color:var(--ink-2);margin-bottom:8px}
-.result-count{font-family:var(--font-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:20px}
-.result-count strong{color:var(--crimson)}
-.footer{background:var(--ink);color:#E7E0D8;margin-top:clamp(60px,9vh,110px);position:relative;overflow:hidden}
-.footer::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(112,26,117,.28),transparent 65%);pointer-events:none}
-.footer-inner{position:relative;padding:clamp(64px,9vh,96px) 0 40px}
-.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(32px,5vw,72px)}
-@media(max-width:860px){.footer-grid{grid-template-columns:1fr}}
-.footer .logo-name{color:#FAF7F2}
-.footer .logo-sub{color:#A8A29E}
-.footer-desc{margin-top:18px;font-size:14.5px;color:#A8A29E;max-width:38ch}
-.footer h4{font-family:var(--font-ui);font-size:11.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#D6CDBF;margin-bottom:20px}
-.footer-list{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14.5px;color:#A8A29E}
-.footer-list li{display:flex;gap:12px;align-items:flex-start;line-height:1.55}
-.footer-list svg{width:16px;height:16px;flex:0 0 16px;stroke:var(--crimson);margin-top:3px}
-.footer-list strong{color:#E7E0D8;font-weight:600}
-.footer-bottom{position:relative;margin-top:clamp(44px,6vh,64px);padding-top:26px;border-top:1px solid rgba(250,247,242,.12);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#78716C}
-.footer-bottom .fine{max-width:64ch}
-.reveal{opacity:0;transform:translateY(36px)}
+html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:#F7F2E7;color:#14291D;font-family:"Instrument Sans",sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:#2D6A4F;color:#F7F2E7}
+.grad{background:linear-gradient(120deg,#8A5A16 0%,#B7791F 55%,#94611A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ovl{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;display:flex;align-items:center;gap:12px;color:#B7791F}
+.ovl::before{content:"";width:32px;height:1px;background:currentColor}
+.btn-green{display:inline-flex;align-items:center;gap:.6rem;border-radius:9999px;padding:.95rem 1.75rem;font-size:.9rem;font-weight:600;background:#2D6A4F;color:#F7F2E7;transition:background-color .3s,transform .3s;box-shadow:0 14px 40px -16px rgba(45,106,79,.6)}
+.btn-green:hover{background:#1D4A36;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;border-radius:9999px;padding:.95rem 1.75rem;font-size:.9rem;font-weight:500;color:#14291D;border:1px solid rgba(20,41,29,.35);transition:background-color .3s,border-color .3s}
+.btn-outline:hover{background:rgba(20,41,29,.06);border-color:#14291D}
+.nav-link{position:relative;transition:color .3s}
+.nav-link::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:#B7791F;transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.nav-link:hover::after{transform:scaleX(1);transform-origin:left}
+.hero-grid{background-image:linear-gradient(rgba(20,41,29,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(20,41,29,.06) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 75%)}
+.line{display:block;overflow:hidden;padding-bottom:.08em}
+.line>span{display:block;transform:translateY(110%);animation:up 1.2s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes up{to{transform:translateY(0)}}
+.fade-in{opacity:0;animation:fi 1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.js .reveal{opacity:.001;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.js .reveal.in{opacity:1;transform:none}
+.tilt{transition:transform .25s ease-out;transform-style:preserve-3d}
+.marquee{animation:mq 60s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
+.bento img{transition:transform 1.2s ease-out}
+.bento:hover img{transform:scale(1.05)}
+.dcard:hover{transform:translateY(-6px)}
+.dcard{transition:transform .3s,border-color .3s}
+.srow .sl{width:0;transition:width .8s cubic-bezier(.16,1,.3,1)}
+.srow:hover .sl{width:100%}
+.srow h3{transition:transform .5s}
+.srow:hover h3{transform:translateX(8px)}
+.field{display:block;width:100%;margin-top:.5rem;background:transparent;color:#14291D;border:0;border-bottom:1px solid rgba(20,41,29,.25);padding:.6rem 0;font-size:1rem;outline:none;transition:border-color .3s}
+.field:focus{border-bottom-color:#2D6A4F}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(20,41,29,.6)}
+dialog::backdrop{background:rgba(20,41,29,.7)}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none}}
 </style>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
 
-<header class="header" id="header" data-testid="site-header">
-  <div class="container header-inner">
-    <a class="logo" href="#top" data-testid="logo-link">
-      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1C1917"/><path d="M18 20h28v6L28 44h18v6H18v-6l18-18H18z" fill="#FAF7F2"/><circle cx="46" cy="18" r="4" fill="#DC2626"/></svg>
-      <span class="logo-type"><span class="logo-name">Zaragoza</span><span class="logo-sub">Empório &amp; Atacado</span></span>
+<header class="fixed top-0 inset-x-0 z-50 border-b border-ink/10 bg-cream/85 backdrop-blur-xl">
+  <div class="mx-auto max-w-7xl px-5 md:px-10 h-[72px] flex items-center justify-between">
+    <a href="#inicio" class="flex items-center gap-3" aria-label="Início">
+      <svg viewBox="0 0 40 40" class="w-9 h-9" fill="none" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="11" fill="#14291D"/><path d="M13 13.5h14l-14 13h14" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.5 7.5c2 .5 3.3 1.8 3.8 3.8-2-.5-3.3-1.8-3.8-3.8Z" fill="#7FB069"/></svg>
+      <span class="leading-none"><span class="block font-serif text-xl tracking-tight">Zaragoza <em class="grad">Empório</em></span><span class="block font-mono text-[10px] tracking-[0.2em] uppercase text-ink/60 mt-1">Taubaté · São Paulo</span></span>
     </a>
-    <div class="header-tag" data-testid="header-status"><span class="dot"></span> Ofertas da semana · Taubaté, SP</div>
+    <nav class="hidden lg:flex items-center gap-8 text-sm text-ink/80">
+      <a class="nav-link hover:text-ink" href="#sobre">O Empório</a>
+      <a class="nav-link hover:text-ink" href="#departamentos">Departamentos</a>
+      <a class="nav-link hover:text-ink" href="#equipe">Equipe</a>
+      <a class="nav-link hover:text-ink" href="#compromissos">Compromissos</a>
+      <a class="nav-link hover:text-ink" href="#contato">Contato</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/551236348700" target="_blank" rel="noreferrer" class="hidden md:inline-flex items-center gap-2 rounded-full bg-green px-5 py-2.5 text-sm font-medium text-cream hover:bg-[#1D4A36] transition-colors duration-300">✆ (12) 3634-8700</a>
+      <button id="menuBtn" class="lg:hidden p-2 text-ink" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
   </div>
+  <nav id="mobileMenu" class="hidden lg:hidden border-t border-ink/10 bg-cream px-5 py-6">
+    <a class="block font-serif text-3xl py-2" href="#sobre">O Empório</a>
+    <a class="block font-serif text-3xl py-2" href="#departamentos">Departamentos</a>
+    <a class="block font-serif text-3xl py-2" href="#equipe">Equipe</a>
+    <a class="block font-serif text-3xl py-2" href="#compromissos">Compromissos</a>
+    <a class="block font-serif text-3xl py-2" href="#contato">Contato</a>
+    <a class="block mt-4 text-green font-mono text-sm" href="https://wa.me/551236348700" target="_blank" rel="noreferrer">(12) 3634-8700 — WhatsApp</a>
+  </nav>
 </header>
 
-<main id="top">
-  <section class="hero" data-testid="hero-section">
-    <div class="hero-bg-glow" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div>
-        <div class="hero-eyebrow">Catálogo de vendas · Edição atual</div>
-        <h1 class="hero-title" id="hero-title">
-          <span class="line"><span>O mercado</span></span>
-          <span class="line"><span>inteiro, com</span></span>
-          <span class="line"><span>preço de <em>atacado.</em></span></span>
-        </h1>
-        <p class="hero-sub">Uma seleção viva das prateleiras: hortifruti fresco, açougue, padaria, adega e mercearia completa — com as ofertas reais da semana reunidas em um só lugar.</p>
-        <div class="hero-cta-row">
-          <a class="btn btn-primary" href="#ofertas" data-testid="hero-cta-ofertas">Ver ofertas da semana
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="#catalogo" data-testid="hero-cta-catalogo">Explorar catálogo</a>
-        </div>
-        <div class="hero-stats" data-testid="hero-stats">
-          <div class="stat"><div class="num" data-count="139">0</div><div class="lbl">Produtos em vitrine</div></div>
-          <div class="stat"><div class="num" data-count="14">0</div><div class="lbl">Departamentos</div></div>
-          <div class="stat"><div class="num" data-count="68" data-suffix="%"><sup>até</sup>0%</div><div class="lbl">De desconto</div></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-frame" id="hero-frame">
-          <img id="hero-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200" alt="Prateleiras de mercado com produtos frescos">
-        </div>
-        <div class="hero-badge-float" data-testid="hero-discount-badge">
-          <span class="pct">−68%</span>
-          <span class="txt">maior oferta<br>desta edição</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee" aria-hidden="true" data-testid="editorial-marquee">
-    <div class="marquee-track" id="marquee-track"></div>
+<main>
+<!-- HERO -->
+<section id="inicio" class="relative min-h-[100svh] pt-[72px] overflow-hidden">
+  <div id="heroBg" class="absolute inset-0 -top-[10%] h-[120%]">
+    <img src="img/z-hero-bg.jpg" alt="" class="w-full h-full object-cover opacity-[0.16]" />
+    <div class="absolute inset-0 bg-cream/70"></div>
   </div>
+  <div class="absolute inset-0 hero-grid opacity-50"></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-5 md:px-10 pt-14 md:pt-24 pb-20 grid lg:grid-cols-12 gap-12 lg:gap-10 items-end">
+    <div class="lg:col-span-7">
+      <p class="fade-in inline-flex items-center gap-2.5 rounded-full border border-ink/15 bg-card/70 px-4 py-2 text-xs text-ink/80 backdrop-blur-md">
+        <span class="w-1.5 h-1.5 rounded-full bg-green shadow-[0_0_10px_#2D6A4F] animate-pulse"></span>Site informativo · sem catálogo de vendas · Taubaté, SP
+      </p>
+      <h1 class="mt-8 font-serif font-light text-[42px] leading-[1] sm:text-6xl lg:text-[86px] tracking-[-0.02em]">
+        <span class="line"><span style="animation-delay:.15s">Um empório guiado</span></span>
+        <span class="line"><span class="italic grad pr-2" style="animation-delay:.29s">pelo cuidado de</span></span>
+        <span class="line"><span style="animation-delay:.43s">pessoas de verdade.</span></span>
+      </h1>
+      <p class="fade-in mt-8 max-w-xl text-base md:text-lg text-ink/80 leading-relaxed" style="animation-delay:.7s">O Zaragoza Empório é o mercado de bairro do Comercial Zaragoza, em Taubaté. Esta página conta o que somos, o que cada departamento oferece e apresenta a equipe que faz tudo acontecer — com transparência e sem vender nada online.</p>
+      <div class="fade-in mt-10 flex flex-wrap gap-4" style="animation-delay:.85s">
+        <a href="#departamentos" class="btn-green">Conhecer os departamentos ↘</a>
+        <a href="#equipe" class="btn-outline">A nossa equipe</a>
+      </div>
+    </div>
+    <div class="lg:col-span-5 lg:pl-6 max-w-md lg:max-w-none w-full" style="perspective:1200px">
+      <div id="tilt" class="tilt fade-in relative aspect-[4/5] w-full rounded-[28px] overflow-hidden border border-ink/10 shadow-[0_40px_100px_-40px_rgba(20,41,29,0.5)]" style="animation-delay:.5s">
+        <img src="img/z-hero-frame.jpg" alt="Hortifruti do empório com frutas e verduras frescas" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute left-5 right-5 bottom-5 rounded-2xl border border-ink/10 bg-card/90 backdrop-blur-xl p-5">
+          <p class="font-mono text-[11px] tracking-[0.2em] uppercase text-green">✓ Página informativa</p>
+          <p class="mt-2 text-sm text-ink/80 leading-relaxed">Site institucional do Zaragoza Empório. Não vendemos online — preços e ofertas apenas na loja.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="ofertas" data-testid="featured-section">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-eyebrow">Curadoria da semana</div>
-          <h2 class="section-title">Destaques que <em>valem o carrinho</em></h2>
-        </div>
-        <p class="section-note">As maiores quedas de preço desta edição, escolhidas a dedo entre todos os departamentos.</p>
+<!-- TRANSPARÊNCIA -->
+<section id="sobre" class="relative py-24 md:py-36 bg-card border-y border-ink/10">
+  <div class="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-12 gap-14">
+    <div class="reveal lg:col-span-6">
+      <p class="ovl">Declaração de transparência</p>
+      <h2 class="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.02]">Um projeto <em class="grad">independente</em>, publicado por quem responde por ele.</h2>
+      <div class="mt-8 space-y-5 text-ink/80 leading-relaxed max-w-xl">
+        <p>Este site é um projeto independente, criado e publicado pelo próprio <strong class="text-ink font-medium">Comercial Zaragoza (Zaragoza Empório)</strong>, único responsável pelo seu conteúdo. Razão social completa e CNPJ estão identificados ao lado.</p>
+        <p>Esta página é exclusivamente informativa: não vendemos online, não publicamos preços nem ofertas. Não somos canal oficial, parceiro autorizado ou representante de fabricantes ou marcas — nomes de terceiros pertencem aos seus titulares.</p>
       </div>
-      <div class="bento" id="bento" data-testid="featured-bento"></div>
     </div>
-  </section>
+    <div class="reveal lg:col-span-6">
+      <div class="relative rounded-[28px] border border-ink/10 bg-cream p-7 md:p-10 overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#7FB069]/20 blur-3xl"></div>
+        <p class="relative inline-flex items-center gap-2 rounded-full bg-green/10 border border-green/30 px-3 py-1.5 text-xs text-green">✓ Dados cadastrais da empresa responsável</p>
+        <dl class="relative mt-6 divide-y divide-ink/10">
+          <div class="py-5"><dt class="lbl">Razão social</dt><dd class="mt-1">Comercial Zaragoza — [preencher razão social completa]</dd></div>
+          <div class="py-5"><dt class="lbl">CNPJ</dt><dd class="mt-1">[preencher CNPJ da empresa]</dd></div>
+          <div class="py-5"><dt class="lbl">Endereço</dt><dd class="mt-1">[preencher endereço da loja] — Taubaté — SP</dd></div>
+          <div class="py-5"><dt class="lbl">WhatsApp da loja</dt><dd class="mt-1">(12) 3634-8700 (confirmado pelo responsável)</dd></div>
+          <div class="py-5"><dt class="lbl">Vínculos</dt><dd class="mt-1">Sem vínculo com fabricantes, marcas ou órgãos públicos.</dd></div>
+        </dl>
+        <p class="relative mt-6 text-xs text-ink/60 leading-relaxed">Campos marcados como [preencher] serão completados com os dados oficiais do responsável pela loja.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="catalogo" style="padding-top:20px" data-testid="catalog-section">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-eyebrow">Vitrine completa</div>
-          <h2 class="section-title">O catálogo, <em>de ponta a ponta</em></h2>
+<!-- MARQUEE -->
+<div class="relative py-10 md:py-14 bg-ink overflow-hidden" aria-hidden="true">
+  <div class="flex w-max">
+    <div class="marquee flex shrink-0 items-center gap-10 pr-10 font-serif text-3xl md:text-5xl font-light whitespace-nowrap">
+      <span class="text-cream">Hortifruti fresquinho</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Açougue na medida</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="text-cream">Padaria do dia</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Adega selecionada</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="text-cream">Mercearia completa</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Atendimento de gente</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+    </div>
+    <div class="marquee flex shrink-0 items-center gap-10 pr-10 font-serif text-3xl md:text-5xl font-light whitespace-nowrap">
+      <span class="text-cream">Hortifruti fresquinho</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Açougue na medida</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="text-cream">Padaria do dia</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Adega selecionada</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="text-cream">Mercearia completa</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+      <span class="italic text-[#E9C46A]">Atendimento de gente</span><i class="w-2 h-2 rotate-45 bg-[#7FB069]"></i>
+    </div>
+  </div>
+</div>
+
+<!-- DEPARTAMENTOS -->
+<section id="departamentos" class="py-24 md:py-36">
+  <div class="mx-auto max-w-7xl px-5 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-8 items-end mb-14 md:mb-20">
+      <div class="reveal lg:col-span-7">
+        <p class="ovl">O que você encontra na loja</p>
+        <h2 class="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.02]">Oito cantos de <em class="grad">cuidado diário.</em></h2>
+      </div>
+      <p class="reveal lg:col-span-5 text-ink/80 leading-relaxed">Descrição informativa dos departamentos da loja. Não publicamos preços ou ofertas nesta página — disponibilidade e condições são informadas pessoalmente na loja ou pelo WhatsApp.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:auto-rows-[300px]">
+      <article class="reveal bento group relative rounded-[28px] overflow-hidden border border-ink/10 md:col-span-7 md:row-span-2 min-h-[380px] md:min-h-0">
+        <img src="img/z-fruits.jpg" alt="Frutas frescas do hortifruti" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent"></div>
+        <div class="relative h-full flex flex-col justify-end p-7 md:p-9"><h3 class="font-serif text-3xl md:text-4xl font-light text-cream">Hortifruti</h3><p class="mt-3 text-sm md:text-base text-cream/85 leading-relaxed max-w-sm">Frutas, legumes e verduras conferidos na chegada, com reposição ao longo do dia.</p></div>
+      </article>
+      <article class="reveal bento group relative rounded-[28px] overflow-hidden border border-ink/10 md:col-span-5 min-h-[300px] md:min-h-0">
+        <img src="img/z-bakery.jpg" alt="Pães da padaria do empório" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent"></div>
+        <div class="relative h-full flex flex-col justify-end p-7 md:p-9"><h3 class="font-serif text-3xl md:text-4xl font-light text-cream">Padaria</h3><p class="mt-3 text-sm md:text-base text-cream/85 leading-relaxed max-w-sm">Pães e quitandas do dia, feitos na casa, direto do forno para a prateleira.</p></div>
+      </article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🥩</span><h3 class="mt-6 font-serif text-2xl">Açougue</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Cortes atendidos no balcão, do jeito que o cliente pede, com orientação de preparo.</p></article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🍷</span><h3 class="mt-6 font-serif text-2xl">Adega</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Rótulos selecionados com cuidado para acompanhar o almoço de domingo e a ocasião simples também.</p></article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🧺</span><h3 class="mt-6 font-serif text-2xl">Mercearia</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Despensa completa: grãos, temperos, enlatados e tudo o que a receita pedir.</p></article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🧀</span><h3 class="mt-6 font-serif text-2xl">Frios &amp; Laticínios</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Queijos, frios e laticínios armazenados na temperatura certa, com rodízio constante.</p></article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🧴</span><h3 class="mt-6 font-serif text-2xl">Bazar &amp; Limpeza</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Utilidades da casa e produtos de limpeza organizados por seção para achar rápido.</p></article>
+      <article class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-7 md:p-8 hover:border-green/40 md:col-span-4"><span class="w-11 h-11 rounded-full bg-green/10 text-green grid place-items-center">🐾</span><h3 class="mt-6 font-serif text-2xl">Pet</h3><p class="mt-2.5 text-sm text-ink/75 leading-relaxed">Petiscos e cuidados para cães e gatos, com espaço reservado na loja.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="relative py-24 md:py-36 bg-sand border-y border-ink/10 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-5 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 mb-16 md:mb-24">
+      <div class="reveal lg:col-span-7">
+        <p class="ovl">Nossa equipe</p>
+        <h2 class="mt-6 font-serif text-4xl sm:text-5xl lg:text-7xl font-light leading-[1]">A excelência aqui tem <em class="grad">nome de gente.</em></h2>
+        <p class="mt-8 max-w-xl text-ink/80 leading-relaxed">Um empório só é bom por causa das pessoas que o mantêm de pé. Esta seção é uma homenagem aos profissionais do Zaragoza — a nossa maior referência de qualidade e o motivo de a loja funcionar todos os dias.</p>
+      </div>
+      <div class="reveal lg:col-span-5">
+        <div class="relative aspect-[4/5] rounded-[28px] overflow-hidden border border-ink/10">
+          <img id="teamImg" src="img/z-team.jpg" alt="Profissional do empório junto à prateleira" class="absolute inset-0 w-full h-[116%] -top-[8%] object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"></div>
+          <blockquote class="absolute left-6 right-6 bottom-6 font-serif text-2xl md:text-3xl font-light italic text-cream leading-snug">“Quem atende bem deixa marca — e é por isso que a gente volta.”</blockquote>
         </div>
-        <p class="section-note">Navegue por departamento ou busque pelo produto. Preços reais capturados da loja.</p>
       </div>
     </div>
-    <div class="filters" data-testid="catalog-filters">
-      <div class="container filters-row">
-        <div class="tabs" id="tabs" data-testid="department-tabs"></div>
-        <div class="search-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input class="search-input" id="search" type="search" placeholder="Buscar produto…" data-testid="catalog-search-input" aria-label="Buscar produto">
+    <ul class="border-b border-ink/15">
+      <li class="reveal srow relative grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-12 border-t border-ink/15"><span class="sl absolute -top-px left-0 h-px bg-gradient-to-r from-green to-[#E9C46A]"></span><span class="md:col-span-1 font-mono text-xs tracking-[0.25em] text-goldc pt-2">01</span><h3 class="md:col-span-4 font-serif text-3xl md:text-4xl font-light">Atendimento &amp; Caixa</h3><div class="md:col-span-7"><p class="font-serif italic text-xl text-[#8A5A16]">A primeira recepção de casa.</p><p class="mt-3 text-ink/80 leading-relaxed max-w-xl">São as pessoas que abrem a porta com um bom dia, resolvem cada dúvida e fazem a última impressão da compra ser a melhor de todas.</p></div></li>
+      <li class="reveal srow relative grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-12 border-t border-ink/15"><span class="sl absolute -top-px left-0 h-px bg-gradient-to-r from-green to-[#E9C46A]"></span><span class="md:col-span-1 font-mono text-xs tracking-[0.25em] text-goldc pt-2">02</span><h3 class="md:col-span-4 font-serif text-3xl md:text-4xl font-light">Hortifruti</h3><div class="md:col-span-7"><p class="font-serif italic text-xl text-[#8A5A16]">Olho clínico em cada caixa.</p><p class="mt-3 text-ink/80 leading-relaxed max-w-xl">Profissionais que escolhem, conferem e organizam frutas e verduras uma a uma, para que a prateleira esteja sempre apresentável e fresca.</p></div></li>
+      <li class="reveal srow relative grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-12 border-t border-ink/15"><span class="sl absolute -top-px left-0 h-px bg-gradient-to-r from-green to-[#E9C46A]"></span><span class="md:col-span-1 font-mono text-xs tracking-[0.25em] text-goldc pt-2">03</span><h3 class="md:col-span-4 font-serif text-3xl md:text-4xl font-light">Açougue &amp; Frios</h3><div class="md:col-span-7"><p class="font-serif italic text-xl text-[#8A5A16]">Precisão que se corta na hora.</p><p class="mt-3 text-ink/80 leading-relaxed max-w-xl">Quem domina o corte certo, a temperatura certa e o atendimento paciente no balcão — mesmo na correria do fim de semana.</p></div></li>
+      <li class="reveal srow relative grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-12 border-t border-ink/15"><span class="sl absolute -top-px left-0 h-px bg-gradient-to-r from-green to-[#E9C46A]"></span><span class="md:col-span-1 font-mono text-xs tracking-[0.25em] text-goldc pt-2">04</span><h3 class="md:col-span-4 font-serif text-3xl md:text-4xl font-light">Padaria &amp; Adega</h3><div class="md:col-span-7"><p class="font-serif italic text-xl text-[#8A5A16]">O perfume que move a loja.</p><p class="mt-3 text-ink/80 leading-relaxed max-w-xl">Mãos que amassam, assam e ficam de olho no ponto exato de cada fornada, além da curadoria paciente de quem entende de rótulos.</p></div></li>
+      <li class="reveal srow relative grid md:grid-cols-12 gap-4 md:gap-8 py-9 md:py-12 border-t border-ink/15"><span class="sl absolute -top-px left-0 h-px bg-gradient-to-r from-green to-[#E9C46A]"></span><span class="md:col-span-1 font-mono text-xs tracking-[0.25em] text-goldc pt-2">05</span><h3 class="md:col-span-4 font-serif text-3xl md:text-4xl font-light">Reposição &amp; Estoque</h3><div class="md:col-span-7"><p class="font-serif italic text-xl text-[#8A5A16]">O trabalho que quase ninguém vê.</p><p class="mt-3 text-ink/80 leading-relaxed max-w-xl">De madrugada ou no meio do movimento, é a equipe que garante prateleira cheia, gôndula organizada e validade em dia.</p></div></li>
+    </ul>
+    <div class="reveal mt-14 rounded-[24px] bg-ink p-8 md:p-12">
+      <p class="font-mono text-xs tracking-[0.25em] uppercase text-[#E9C46A]">Reconhecimento</p>
+      <p class="mt-5 max-w-3xl text-lg md:text-xl text-cream/90 font-light leading-relaxed">A cada profissional do Zaragoza Empório: obrigado pela dedicação, pelo capricho no balcão, na prateleira e no forno, e pelo compromisso com cada cliente. Vocês são a parte mais valiosa desta casa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPROMISSOS -->
+<section id="compromissos" class="py-24 md:py-36">
+  <div class="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-12 gap-12">
+    <div class="reveal lg:col-span-4 lg:sticky lg:top-28 self-start">
+      <p class="ovl">Compromissos públicos</p>
+      <h2 class="mt-6 font-serif text-4xl sm:text-5xl font-light leading-[1.02]">Regras que a gente <em class="grad">assina embaixo.</em></h2>
+      <p class="mt-6 text-ink/80 leading-relaxed">Compromissos simples que seguimos na comunicação desta página e no atendimento a qualquer pessoa.</p>
+    </div>
+    <div class="lg:col-span-8 grid sm:grid-cols-2 gap-5">
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">01</span><h3 class="mt-8 font-serif text-2xl">Identificação clara</h3><p class="mt-3 text-ink/75 leading-relaxed">Razão social, CNPJ e endereço da loja identificados nesta página, em linguagem simples.</p></div>
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">02</span><h3 class="mt-8 font-serif text-2xl">Página informativa</h3><p class="mt-3 text-ink/75 leading-relaxed">Este site não é uma loja virtual: não há catálogo, carrinho, preços nem compra online.</p></div>
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">03</span><h3 class="mt-8 font-serif text-2xl">Sem promessas de economia</h3><p class="mt-3 text-ink/75 leading-relaxed">Não publicamos ofertas, descontos ou comparações de preço nesta página. Condições só na loja.</p></div>
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">04</span><h3 class="mt-8 font-serif text-2xl">Imagens ilustrativas</h3><p class="mt-3 text-ink/75 leading-relaxed">As fotos representam o tipo de produto dos departamentos e podem não ser as exatas da loja.</p></div>
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">05</span><h3 class="mt-8 font-serif text-2xl">Privacidade (LGPD)</h3><p class="mt-3 text-ink/75 leading-relaxed">Dados enviados pelo formulário são usados apenas para responder ao seu contato, com consentimento expresso.</p></div>
+      <div class="reveal dcard rounded-[24px] border border-ink/10 bg-card p-8 md:p-10 hover:border-green/40"><span class="font-serif text-6xl font-light grad leading-none">06</span><h3 class="mt-8 font-serif text-2xl">Sem vínculo com terceiros</h3><p class="mt-3 text-ink/75 leading-relaxed">Marcas de fabricantes eventualmente citadas pertencem aos seus titulares. Não somos canal oficial de ninguém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="py-24 md:py-36 bg-card border-t border-ink/10">
+  <div class="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-12 gap-14">
+    <div class="reveal lg:col-span-5">
+      <p class="ovl">Contato</p>
+      <h2 class="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.02]">Fale <em class="grad">diretamente</em> com a loja.</h2>
+      <p class="mt-6 text-ink/80 leading-relaxed">Sem intermediários: o contato abaixo é do próprio empório, responsável por este site.</p>
+      <div class="mt-8 divide-y divide-ink/10 border-b border-ink/10">
+        <a href="https://wa.me/551236348700" target="_blank" rel="noreferrer" class="block py-6 group"><span class="lbl block">WhatsApp da loja</span><span class="block mt-1 text-lg group-hover:text-green transition-colors">(12) 3634-8700</span></a>
+        <div class="block py-6"><span class="lbl block">Endereço</span><span class="block mt-1 text-lg">[preencher endereço da loja] — Taubaté — SP</span></div>
+        <div class="block py-6"><span class="lbl block">Horário de funcionamento</span><span class="block mt-1 text-lg">[preencher horário da loja]</span></div>
+      </div>
+    </div>
+    <div class="reveal lg:col-span-7">
+      <form id="contactForm" class="rounded-[28px] border border-ink/10 bg-cream p-6 sm:p-8 md:p-12 space-y-7">
+        <div class="grid sm:grid-cols-2 gap-7">
+          <label class="block"><span class="lbl">Nome completo</span><input name="nome" required minlength="2" class="field" /></label>
+          <label class="block"><span class="lbl">E-mail</span><input name="email" type="email" required class="field" /></label>
+          <label class="block"><span class="lbl">Telefone ou WhatsApp (opcional)</span><input name="telefone" class="field" /></label>
+          <label class="block"><span class="lbl">Assunto</span><input name="assunto" required class="field" /></label>
         </div>
-      </div>
+        <label class="block"><span class="lbl">Mensagem</span><textarea name="mensagem" rows="4" required minlength="5" class="field resize-none"></textarea></label>
+        <label class="flex items-start gap-3 text-sm text-ink/80 leading-relaxed">
+          <input type="checkbox" name="lgpd" required class="mt-1 w-4 h-4 accent-[#2D6A4F]" />
+          <span>Autorizo o uso dos meus dados exclusivamente para resposta a este contato, nos termos da Lei nº 13.709/2018 (LGPD) e da <button type="button" data-doc="privacidade" class="underline underline-offset-4 text-green">Política de Privacidade</button>.</span>
+        </label>
+        <button type="submit" class="btn-green w-full sm:w-auto">Enviar mensagem</button>
+        <p class="text-xs text-ink/60">Ao enviar, seu WhatsApp será aberto com a mensagem pronta para a loja.</p>
+      </form>
     </div>
-    <div class="container">
-      <div class="result-count" id="result-count" data-testid="result-count"></div>
-      <div class="grid" id="grid" data-testid="product-grid"></div>
-      <div class="grid-empty" id="grid-empty" data-testid="grid-empty-state">
-        <div class="big">Nada por aqui…</div>
-        <p>Tente outro termo ou departamento.</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 </main>
 
-<footer class="footer" data-testid="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-grid">
-      <div>
-        <a class="logo" href="#top" data-testid="footer-logo-link">
-          <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#FAF7F2"/><path d="M18 20h28v6L28 44h18v6H18v-6l18-18H18z" fill="#1C1917"/><circle cx="46" cy="18" r="4" fill="#DC2626"/></svg>
-          <span class="logo-type"><span class="logo-name">Zaragoza</span><span class="logo-sub">Empório &amp; Atacado</span></span>
-        </a>
-        <p class="footer-desc">Catálogo de vendas com os melhores preços da região. Qualidade de empório, economia de atacado — todos os dias.</p>
+<footer class="relative pt-20 pb-10 bg-deep text-cream overflow-hidden">
+  <div class="mx-auto max-w-7xl px-5 md:px-10">
+    <div class="space-y-3 mb-16">
+      <p class="rounded-2xl border border-[#E9C46A]/30 bg-[#1A3526] px-5 py-4 text-sm flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#E9C46A] shrink-0"></span>Projeto independente publicado pelo Comercial Zaragoza (Zaragoza Empório), responsável por este conteúdo.</p>
+      <p class="rounded-2xl border border-[#7FB069]/30 bg-[#1A3526] px-5 py-4 text-sm flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#7FB069] shrink-0"></span>Site informativo: não vendemos online. Não há catálogo, preços ou compras nesta página — ofertas só na loja.</p>
+    </div>
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="font-serif text-2xl">Zaragoza <em class="grad">Empório</em></p>
+        <p class="mt-6 text-sm text-cream/70 leading-relaxed max-w-sm">Mercado de bairro em Taubaté, feito por pessoas que gostam de servir bem. Conteúdo meramente informativo, sem finalidade de venda online.</p>
       </div>
-      <div>
-        <h4>Empresa</h4>
-        <ul class="footer-list" data-testid="footer-company-info">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4"/></svg><span><strong>Comercial Zaragoza Importação e Exportação Limitada</strong><br>CNPJ 05.868.574/0010-90</span></li>
-        </ul>
+      <div class="md:col-span-4 text-sm text-cream/85 space-y-2">
+        <p class="lbl !text-cream/50 mb-3">Empresa responsável</p>
+        <p>Comercial Zaragoza — [preencher razão social completa]</p>
+        <p>CNPJ [preencher CNPJ da empresa]</p>
+        <p>[preencher endereço da loja] — Taubaté — SP</p>
+        <p><a href="https://wa.me/551236348700" target="_blank" rel="noreferrer" class="hover:text-[#E9C46A]">WhatsApp (12) 3634-8700</a></p>
+        <p>E-mail: [preencher e-mail da loja]</p>
       </div>
-      <div>
-        <h4>Pedidos &amp; Endereço</h4>
-        <ul class="footer-list" data-testid="footer-address-info">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><strong>WhatsApp / Telefone</strong><br><a href="https://wa.me/551236348700" target="_blank" rel="noopener" style="color:#E7E0D8;text-decoration:underline;text-underline-offset:3px" data-testid="footer-whatsapp-link">(12) 3634-8700</a></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Avenida Dom Pedro I, 6707<br>Jardim Baronesa — Taubaté / SP<br>CEP 12091-000</span></li>
+      <div class="md:col-span-3 text-sm">
+        <p class="lbl !text-cream/50 mb-3">Documentos</p>
+        <ul class="space-y-2 text-cream/85">
+          <li><button data-doc="privacidade" class="nav-link hover:text-white">Política de Privacidade</button></li>
+          <li><button data-doc="termos" class="nav-link hover:text-white">Termos de Uso</button></li>
+          <li><button data-doc="aviso" class="nav-link hover:text-white">Aviso Legal e Transparência</button></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span data-testid="footer-legal">© <span id="year"></span> Comercial Zaragoza Importação e Exportação Limitada — Todos os direitos reservados.</span>
-      <span class="fine">Catálogo vitrine · Preços e ofertas capturados do Spani Online e sujeitos a alteração sem aviso prévio.</span>
+    <p class="mt-20 font-serif font-light text-[18vw] md:text-[13vw] leading-[0.8] tracking-[-0.04em] text-white/[0.04] select-none" aria-hidden="true">Zaragoza</p>
+    <div class="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-xs text-cream/50">
+      <p>© <span id="year"></span> Comercial Zaragoza. Todos os direitos reservados.</p>
+      <p>Imagens meramente ilustrativas. Sem ofertas ou preços nesta página.</p>
     </div>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- DOCUMENTOS LEGAIS -->
+<dialog id="legal" class="max-w-2xl w-[92vw] max-h-[85vh] rounded-2xl bg-card text-ink/90 border border-ink/15 p-0" data-lenis-prevent>
+  <div class="p-7 md:p-9">
+    <div class="flex justify-between items-start gap-4">
+      <h3 id="legalTitle" class="font-serif text-3xl font-light text-ink"></h3>
+      <button id="legalClose" class="text-ink/70 hover:text-ink text-2xl leading-none" aria-label="Fechar">×</button>
+    </div>
+    <p class="text-sm text-ink/60 mt-1">Atualizado e mantido pelo Comercial Zaragoza.</p>
+    <div id="legalBody" class="mt-5 space-y-4 text-sm leading-relaxed"></div>
+  </div>
+</dialog>
+
+<script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"></script>
 <script>
-const PRODUCTS = [{"id":890,"nome":"Vassoura Condor Madri Cccx","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/a1de08b1-c9d4-49e6-bbfc-2e994da2d0df.jpg","depto":"Bazar e utilidades","preco":6.49,"antigo":8.79,"desc_pct":26,"un":"UN","vendidos":2032,"oferta":true,"link":"https://www.spanionline.com.br/produto/890/vassoura-condor-madri-cccx","destaque":true},{"id":889,"nome":"Vassoura Bettanin Noviça Original","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/860000b9-c0b7-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Bazar e utilidades","preco":13.9,"antigo":17.89,"desc_pct":22,"un":"UN","vendidos":1194,"oferta":true,"link":"https://www.spanionline.com.br/produto/889/vassoura-bettanin-novica-original","destaque":true},{"id":361,"nome":"Pano Multiuso Dumontex 38x37 Cm","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/3bb88516-f056-49ed-b647-46e3647bd868.jpg","depto":"Bazar e utilidades","preco":3.29,"antigo":3.99,"desc_pct":18,"un":"UN","vendidos":2964,"oferta":true,"link":"https://www.spanionline.com.br/produto/361/pano-multiuso-dumontex-38x37-cm","destaque":false},{"id":359,"nome":"Pano De Prato Com Bainha Dumontex","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/a619bb92-9bb1-4a11-85ee-04a8c08ab4c1.jpg","depto":"Bazar e utilidades","preco":5.29,"antigo":6.49,"desc_pct":18,"un":"UN","vendidos":1767,"oferta":true,"link":"https://www.spanionline.com.br/produto/359/pano-de-prato-com-bainha-dumontex","destaque":false},{"id":360,"nome":"Pano De Prato Estampado Santos Dumont","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/85beb5dc-2731-4a1d-874e-ef795a555e07.jpg","depto":"Bazar e utilidades","preco":4.49,"antigo":5.49,"desc_pct":18,"un":"UN","vendidos":1484,"oferta":true,"link":"https://www.spanionline.com.br/produto/360/pano-de-prato-estampado-santos-dumont","destaque":false},{"id":897,"nome":"Vassoura Varre Facil Condor V-35","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/fb034062-ed5c-4fa7-ba8d-1de35cdd5be5.jpg","depto":"Bazar e utilidades","preco":11.49,"antigo":13.89,"desc_pct":17,"un":"UN","vendidos":903,"oferta":true,"link":"https://www.spanionline.com.br/produto/897/vassoura-varre-facil-condor-v35","destaque":false},{"id":895,"nome":"Vassoura Moderna Plus Rossi","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/a61dd9e8-9864-4518-8bcc-adec864d38dc.jpg","depto":"Bazar e utilidades","preco":21.89,"antigo":25.49,"desc_pct":14,"un":"UN","vendidos":176,"oferta":true,"link":"https://www.spanionline.com.br/produto/895/vassoura-moderna-plus-rossi","destaque":false},{"id":362,"nome":"Pano Multiuso Limppano Furado Azul","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/5854ca16-0d2e-4793-9435-17df6b4857ed.jpg","depto":"Bazar e utilidades","preco":9.99,"antigo":11.49,"desc_pct":13,"un":"UN","vendidos":1628,"oferta":true,"link":"https://www.spanionline.com.br/produto/362/pano-multiuso-limppano-furado-azul","destaque":false},{"id":363,"nome":"Pano Multiuso Limppano Furatto Lavanda","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/89b62f4f-3db2-45b6-b2e7-382505ad1ae6.jpg","depto":"Bazar e utilidades","preco":9.99,"antigo":11.49,"desc_pct":13,"un":"UN","vendidos":839,"oferta":true,"link":"https://www.spanionline.com.br/produto/363/pano-multiuso-limppano-furatto-lavanda","destaque":false},{"id":896,"nome":"Vassoura Piaçava Rossi","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/d78ee428-bd51-4a00-87b7-241b4eae9642.jpg","depto":"Bazar e utilidades","preco":32.99,"antigo":37.9,"desc_pct":13,"un":"UN","vendidos":543,"oferta":true,"link":"https://www.spanionline.com.br/produto/896/vassoura-piacava-rossi","destaque":false},{"id":3472,"nome":"Água Mineral Minalba 510ml Sem Gás","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/123b25a7-db9b-45d8-986e-549a31169777.jpg","depto":"Bebidas","preco":1.49,"antigo":1.69,"desc_pct":12,"un":"UN","vendidos":112722,"oferta":true,"link":"https://www.spanionline.com.br/produto/3472/agua-mineral-minalba-510ml-sem-gas","destaque":false},{"id":3780,"nome":"Refrigerante Zero Coca Cola 1l","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/d43e127e-ae31-4671-81ec-4820d1a5d5a2.jpg","depto":"Bebidas","preco":5.69,"antigo":6.49,"desc_pct":12,"un":"UN","vendidos":50753,"oferta":true,"link":"https://www.spanionline.com.br/produto/3780/refrigerante-zero-coca-cola-1l","destaque":false},{"id":3712,"nome":"Refrigerante Coca Cola 1l","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/4f022f65-9a8a-4bef-ae8d-c798f261ac6e.jpg","depto":"Bebidas","preco":5.69,"antigo":6.49,"desc_pct":12,"un":"UN","vendidos":47280,"oferta":true,"link":"https://www.spanionline.com.br/produto/3712/refrigerante-coca-cola-1l","destaque":false},{"id":3479,"nome":"Água Mineral Passa Quatro 510ml Com Gás","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ddefb978-3136-4251-9c50-870162eb05eb.jpg","depto":"Bebidas","preco":1.59,"antigo":1.79,"desc_pct":11,"un":"UN","vendidos":87451,"oferta":true,"link":"https://www.spanionline.com.br/produto/3479/agua-mineral-passa-quatro-510ml-com-gas","destaque":false},{"id":3481,"nome":"Água Mineral Passa Quatro 5l Sem Gás","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2147787e-fcfc-4078-9907-81c392bc3404.jpg","depto":"Bebidas","preco":7.99,"antigo":8.99,"desc_pct":11,"un":"UN","vendidos":3424,"oferta":true,"link":"https://www.spanionline.com.br/produto/3481/agua-mineral-passa-quatro-5l-sem-gas","destaque":false},{"id":3647,"nome":"Energético Red Bull 473ml Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/db45eb58-c0b9-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Bebidas","preco":15.89,"antigo":17.89,"desc_pct":11,"un":"UN","vendidos":629,"oferta":true,"link":"https://www.spanionline.com.br/produto/3647/energetico-red-bull-473ml-tradicional","destaque":false},{"id":3471,"nome":"Agua Mineral Minalba 510ml C/gas","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/32a331a9-9fbc-47d1-8257-6d4545c5b694.jpg","depto":"Bebidas","preco":1.89,"antigo":2.09,"desc_pct":10,"un":"UN","vendidos":94055,"oferta":true,"link":"https://www.spanionline.com.br/produto/3471/agua-mineral-minalba-510ml-cgas","destaque":false},{"id":3468,"nome":"Água Mineral Minalba 1.5l Sem Gás","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/d2bcbb08-15da-4ef8-b9ab-30f52ce209fd.jpg","depto":"Bebidas","preco":2.69,"antigo":2.99,"desc_pct":10,"un":"UN","vendidos":39601,"oferta":true,"link":"https://www.spanionline.com.br/produto/3468/agua-mineral-minalba-15l-sem-gas","destaque":false},{"id":3459,"nome":"Água De Coco Sococo 200ml Maracujá","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/95a3c42d-2de3-496d-8ac1-d1eff84d7172.jpg","depto":"Bebidas","preco":1.79,"antigo":1.99,"desc_pct":10,"un":"UN","vendidos":3403,"oferta":true,"link":"https://www.spanionline.com.br/produto/3459/agua-de-coco-sococo-200ml-maracuja","destaque":false},{"id":3476,"nome":"Água Mineral Passa Quatro 1,5l Sem Gás","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/b8921d3e-3ed3-4092-8269-af2551f5dbc1.jpg","depto":"Bebidas","preco":1.99,"antigo":2.19,"desc_pct":9,"un":"UN","vendidos":38267,"oferta":true,"link":"https://www.spanionline.com.br/produto/3476/agua-mineral-passa-quatro-15l-sem-gas","destaque":false},{"id":4108,"nome":"Biscoito Club Social 144g Original","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/6f56b353-385c-4ebf-9043-f63a20f462f3.jpg","depto":"Biscoitos e chocolates","preco":4.99,"antigo":5.49,"desc_pct":9,"un":"UN","vendidos":8341,"oferta":true,"link":"https://www.spanionline.com.br/produto/4108/biscoito-club-social-144g-original","destaque":false},{"id":4107,"nome":"Biscoito Club Social 144g Integral","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/5fd97ca8-101a-4c34-a634-5ed86a2e2705.jpg","depto":"Biscoitos e chocolates","preco":4.99,"antigo":5.49,"desc_pct":9,"un":"UN","vendidos":2355,"oferta":true,"link":"https://www.spanionline.com.br/produto/4107/biscoito-club-social-144g-integral","destaque":false},{"id":4109,"nome":"Biscoito Club Social 141g Pizza","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ea3a520a-1fc6-4e13-ae7f-d09a289cc34c.jpg","depto":"Biscoitos e chocolates","preco":4.99,"antigo":5.49,"desc_pct":9,"un":"UN","vendidos":1148,"oferta":true,"link":"https://www.spanionline.com.br/produto/4109/biscoito-club-social-141g-pizza","destaque":false},{"id":4103,"nome":"Biscoito Caseiro Biscoitone 80g Mineiro","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f11460ab-f49d-4920-b517-2d3659410365.jpg","depto":"Biscoitos e chocolates","preco":4.29,"antigo":4.69,"desc_pct":9,"un":"UN","vendidos":1070,"oferta":true,"link":"https://www.spanionline.com.br/produto/4103/biscoito-caseiro-biscoitone-80g-mineiro","destaque":false},{"id":3955,"nome":"Bala De Gelatina Fini 80g Minhocas Brilho","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/d9cfaf47-c0b2-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Biscoitos e chocolates","preco":7.29,"antigo":7.99,"desc_pct":9,"un":"UN","vendidos":890,"oferta":true,"link":"https://www.spanionline.com.br/produto/3955/bala-de-gelatina-fini-80g-minhocas-brilho","destaque":false},{"id":3953,"nome":"Bala De Gelatina Fini 80g Beijos Morango","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/1072f8ec-f9ca-4c04-b28b-9d8f06578a19.jpg","depto":"Biscoitos e chocolates","preco":7.29,"antigo":7.99,"desc_pct":9,"un":"UN","vendidos":859,"oferta":true,"link":"https://www.spanionline.com.br/produto/3953/bala-de-gelatina-fini-80g-beijos-morango","destaque":false},{"id":4110,"nome":"Biscoito Club Social 141g Presunto","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7e8dd893-2035-40df-b777-8183790fcce3.jpg","depto":"Biscoitos e chocolates","preco":4.99,"antigo":5.49,"desc_pct":9,"un":"UN","vendidos":706,"oferta":true,"link":"https://www.spanionline.com.br/produto/4110/biscoito-club-social-141g-presunto","destaque":false},{"id":3956,"nome":"Bala De Gelatina Fini 80g Minhocas Cítricas","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/759447da-f507-4dbc-b979-161438903dd0.jpg","depto":"Biscoitos e chocolates","preco":7.29,"antigo":7.99,"desc_pct":9,"un":"UN","vendidos":663,"oferta":true,"link":"https://www.spanionline.com.br/produto/3956/bala-de-gelatina-fini-80g-minhocas-citricas","destaque":false},{"id":3954,"nome":"Bala De Gelatina Fini 80g Dentaduras","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/04d19477-c0b8-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Biscoitos e chocolates","preco":7.29,"antigo":7.99,"desc_pct":9,"un":"UN","vendidos":631,"oferta":true,"link":"https://www.spanionline.com.br/produto/3954/bala-de-gelatina-fini-80g-dentaduras","destaque":false},{"id":3952,"nome":"Bala De Gelatina Fini 80g Banana","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/24b053ff-e989-45e6-9f06-16ae2ff35dbe.jpg","depto":"Biscoitos e chocolates","preco":7.29,"antigo":7.99,"desc_pct":9,"un":"UN","vendidos":462,"oferta":true,"link":"https://www.spanionline.com.br/produto/3952/bala-de-gelatina-fini-80g-banana","destaque":false},{"id":1148,"nome":"Linguiça Toscana Aurora 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0cdcadb7-111a-40d5-b692-05f548442fa8.jpg","depto":"Carnes","preco":23.9,"antigo":25.9,"desc_pct":8,"un":"KG","vendidos":3468,"oferta":true,"link":"https://www.spanionline.com.br/produto/1148/linguica-toscana-aurora-1kg","destaque":false},{"id":1086,"nome":"Frango Filé De Peito Seara Bandeja 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f0d74e9c-392a-40bb-a672-15c32722e2b7.jpg","depto":"Carnes","preco":21.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":11045,"oferta":false,"link":"https://www.spanionline.com.br/produto/1086/frango-file-de-peito-seara-bandeja-1kg","destaque":false},{"id":1270,"nome":"Salsicha Hot Dog Aurora 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2c8aef4c-6448-457b-b614-32e3f038cb16.jpg","depto":"Carnes","preco":2.95,"antigo":null,"desc_pct":null,"un":"KG","vendidos":9310,"oferta":false,"link":"https://www.spanionline.com.br/produto/1270/salsicha-hot-dog-aurora-200g","destaque":false},{"id":1613,"nome":"Salsicha Hot Dog Seara 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7ac3cbbc-ebf2-4ccf-9720-b28407f121f3.jpg","depto":"Carnes","preco":2.69,"antigo":null,"desc_pct":null,"un":"KG","vendidos":6633,"oferta":false,"link":"https://www.spanionline.com.br/produto/1613/salsicha-hot-dog-seara-200g","destaque":false},{"id":659,"nome":"Linguiça Calabresa Defumada Seara 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/993d2557-bbf8-441d-9f64-9806b172caea.jpg","depto":"Carnes","preco":12.29,"antigo":null,"desc_pct":null,"un":"KG","vendidos":6531,"oferta":false,"link":"https://www.spanionline.com.br/produto/659/linguica-calabresa-defumada-seara-500g","destaque":false},{"id":1122,"nome":"Frango Sobrecoxa Seara Zip 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7b0f621f-4681-4741-911b-fb8ee591c069.jpg","depto":"Carnes","preco":14.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":5267,"oferta":false,"link":"https://www.spanionline.com.br/produto/1122/frango-sobrecoxa-seara-zip-1kg","destaque":false},{"id":1087,"nome":"Filé De Peito Seara Congelado 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/96ea284f-79de-4e57-abd6-7f267f015ddc.jpg","depto":"Carnes","preco":19.98,"antigo":null,"desc_pct":null,"un":"UN","vendidos":4142,"oferta":false,"link":"https://www.spanionline.com.br/produto/1087/file-de-peito-seara-congelado-1kg","destaque":false},{"id":646,"nome":"Linguiça Calabresa Defumada Aurora 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/49ecd057-ac1a-442e-ba99-1bd1e968b502.jpg","depto":"Carnes","preco":17.44,"antigo":null,"desc_pct":null,"un":"KG","vendidos":3692,"oferta":false,"link":"https://www.spanionline.com.br/produto/646/linguica-calabresa-defumada-aurora-500g","destaque":false},{"id":1108,"nome":"Frango File Peito Aurora 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/1fde3510-ccf7-46d8-9c60-2e1afac0ef84.jpg","depto":"Carnes","preco":22.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":2749,"oferta":false,"link":"https://www.spanionline.com.br/produto/1108/frango-file-peito-aurora-1kg","destaque":false},{"id":1118,"nome":"Frango Passarinho Seara Congelado Zip 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/be71c6b5-636b-466a-867c-a3e5989fe7c8.jpg","depto":"Carnes","preco":16.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":2535,"oferta":false,"link":"https://www.spanionline.com.br/produto/1118/frango-passarinho-seara-congelado-zip-1kg","destaque":false},{"id":221,"nome":"Polvilho Azedo Pacha 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0953993a-e9f4-45eb-ae6c-0dd68a8b0b8c.jpg","depto":"Cereais e farinaceos","preco":5.69,"antigo":6.29,"desc_pct":10,"un":"UN","vendidos":2152,"oferta":true,"link":"https://www.spanionline.com.br/produto/221/polvilho-azedo-pacha-500g","destaque":false},{"id":223,"nome":"Polvilho Doce Pacha 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/22b52d5d-d8e8-42d1-bc93-06685be2de67.jpg","depto":"Cereais e farinaceos","preco":5.69,"antigo":6.29,"desc_pct":10,"un":"UN","vendidos":1539,"oferta":true,"link":"https://www.spanionline.com.br/produto/223/polvilho-doce-pacha-500g","destaque":false},{"id":225,"nome":"Polvilho Yoki Doce 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/bb2ff158-644b-4453-a0dd-39927b9171d7.jpg","depto":"Cereais e farinaceos","preco":10.85,"antigo":11.99,"desc_pct":10,"un":"UN","vendidos":518,"oferta":true,"link":"https://www.spanionline.com.br/produto/225/polvilho-yoki-doce-500g","destaque":false},{"id":224,"nome":"Polvilho Yoki Azedo 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/307e2ca7-2af1-4de1-9af0-2a271dc120bd.jpg","depto":"Cereais e farinaceos","preco":12.99,"antigo":14.29,"desc_pct":9,"un":"UN","vendidos":621,"oferta":true,"link":"https://www.spanionline.com.br/produto/224/polvilho-yoki-azedo-500g","destaque":false},{"id":801,"nome":"Feijão Carioca Tipo 1 Fantástico 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/45eecdc9-746f-48d1-b458-0e9f8a072c8a.jpg","depto":"Cereais e farinaceos","preco":8.99,"antigo":9.45,"desc_pct":5,"un":"UN","vendidos":29663,"oferta":true,"link":"https://www.spanionline.com.br/produto/801/feijao-carioca-tipo-1-fantastico-1kg","destaque":false},{"id":803,"nome":"Feijão Carioca Tipo 1 Maravilha 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e520ba18-4d9a-40e9-b060-9f0f7d1272c4.jpg","depto":"Cereais e farinaceos","preco":7.89,"antigo":8.29,"desc_pct":5,"un":"UN","vendidos":15653,"oferta":true,"link":"https://www.spanionline.com.br/produto/803/feijao-carioca-tipo-1-maravilha-1kg","destaque":false},{"id":804,"nome":"Feijão Carioca Tipo 1 Nenê 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ba78569f-5be0-438f-aa5c-9b9c41eece8b.jpg","depto":"Cereais e farinaceos","preco":8.39,"antigo":8.79,"desc_pct":5,"un":"UN","vendidos":10910,"oferta":true,"link":"https://www.spanionline.com.br/produto/804/feijao-carioca-tipo-1-nene-1kg","destaque":false},{"id":797,"nome":"Farinha De Trigo Rosa Branca Tipo 1 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/cda86b3e-8cc4-486a-a6d9-52e461a07be6.jpg","depto":"Cereais e farinaceos","preco":4.69,"antigo":4.89,"desc_pct":4,"un":"UN","vendidos":802,"oferta":true,"link":"https://www.spanionline.com.br/produto/797/farinha-de-trigo-rosa-branca-tipo-1-1kg","destaque":false},{"id":812,"nome":"Feijão Preto Tipo 1 Maravilha 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/eb07c9eb-3790-46f0-831a-3182f9d68e58.jpg","depto":"Cereais e farinaceos","preco":6.59,"antigo":6.79,"desc_pct":3,"un":"UN","vendidos":8006,"oferta":true,"link":"https://www.spanionline.com.br/produto/812/feijao-preto-tipo-1-maravilha-1kg","destaque":false},{"id":811,"nome":"Feijão Preto Tipo 1 Fantástico 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/3fea90d7-02f6-4739-8aad-6bfec6b97913.jpg","depto":"Cereais e farinaceos","preco":6.79,"antigo":6.99,"desc_pct":3,"un":"UN","vendidos":6581,"oferta":true,"link":"https://www.spanionline.com.br/produto/811/feijao-preto-tipo-1-fantastico-1kg","destaque":false},{"id":609,"nome":"Hambúrguer Misto Seara 672g Texas Burguer","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ed8a4a22-e8d1-46c4-a525-a2ad518fc25d.jpg","depto":"Congelados","preco":12.9,"antigo":19.99,"desc_pct":35,"un":"UN","vendidos":2328,"oferta":true,"link":"https://www.spanionline.com.br/produto/609/hamburguer-misto-seara-672g-texas-burguer","destaque":true},{"id":1218,"nome":"Polpa De Marchi 100g Maracujá","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9b2ce433-c0b9-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Congelados","preco":4.79,"antigo":null,"desc_pct":null,"un":"UN","vendidos":6200,"oferta":false,"link":"https://www.spanionline.com.br/produto/1218/polpa-de-marchi-100g-maracuja","destaque":false},{"id":150,"nome":"Pão De Queijo Forno De Minas 1kg Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/eba03fc4-d9e4-4f75-96f8-379349a397bb.jpg","depto":"Congelados","preco":41.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":5915,"oferta":false,"link":"https://www.spanionline.com.br/produto/150/pao-de-queijo-forno-de-minas-1kg-tradicional","destaque":false},{"id":1219,"nome":"Polpa De Marchi 100g Morango","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9c7132fe-c0b9-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Congelados","preco":3.19,"antigo":null,"desc_pct":null,"un":"UN","vendidos":5120,"oferta":false,"link":"https://www.spanionline.com.br/produto/1219/polpa-de-marchi-100g-morango","destaque":false},{"id":1210,"nome":"Polpa De Marchi 100g Caju","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/59fe1672-fe7d-4324-8ec5-ab3d817b8e87.jpg","depto":"Congelados","preco":3.0,"antigo":null,"desc_pct":null,"un":"UN","vendidos":4176,"oferta":false,"link":"https://www.spanionline.com.br/produto/1210/polpa-de-marchi-100g-caju","destaque":false},{"id":1208,"nome":"Polpa De Marchi 100g Acerola","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f881fd60-741b-41d6-b90c-180d1acd0cfc.jpg","depto":"Congelados","preco":2.69,"antigo":null,"desc_pct":null,"un":"UN","vendidos":3815,"oferta":false,"link":"https://www.spanionline.com.br/produto/1208/polpa-de-marchi-100g-acerola","destaque":false},{"id":1207,"nome":"Polpa De Marchi 100g Abacaxi Com Hortelã","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9a64b46e-c0b9-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Congelados","preco":3.09,"antigo":null,"desc_pct":null,"un":"UN","vendidos":3538,"oferta":false,"link":"https://www.spanionline.com.br/produto/1207/polpa-de-marchi-100g-abacaxi-com-hortela","destaque":false},{"id":1217,"nome":"Polpa De Marchi 100g Manga","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2c85dcca-3d26-4159-892b-63775fa7b9cc.jpg","depto":"Congelados","preco":2.19,"antigo":null,"desc_pct":null,"un":"UN","vendidos":3203,"oferta":false,"link":"https://www.spanionline.com.br/produto/1217/polpa-de-marchi-100g-manga","destaque":false},{"id":1206,"nome":"Polpa De Marchi 100g Abacaxi","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2c2cd21a-4afd-48f8-8258-6da6854bf047.jpg","depto":"Congelados","preco":2.89,"antigo":null,"desc_pct":null,"un":"UN","vendidos":2931,"oferta":false,"link":"https://www.spanionline.com.br/produto/1206/polpa-de-marchi-100g-abacaxi","destaque":false},{"id":1209,"nome":"Polpa De Marchi 100g Acerola E Laranja","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/cb861577-85e5-4270-ac7e-2f09aecbdda6.jpg","depto":"Congelados","preco":3.59,"antigo":null,"desc_pct":null,"un":"UN","vendidos":2925,"oferta":false,"link":"https://www.spanionline.com.br/produto/1209/polpa-de-marchi-100g-acerola-e-laranja","destaque":false},{"id":2569,"nome":"Bebida Láctea Toddynho 200ml","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0998443d-ac54-44f2-8ce7-b4cd858ff9d2.jpg","depto":"Frios e laticinios","preco":2.39,"antigo":2.69,"desc_pct":11,"un":"UN","vendidos":40408,"oferta":true,"link":"https://www.spanionline.com.br/produto/2569/bebida-lactea-toddynho-200ml","destaque":false},{"id":228,"nome":"Queijo Ralado Teixeira Tradicional 40g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/51bb55ee-9b98-440c-bd5e-0606e697ec40.jpg","depto":"Frios e laticinios","preco":4.39,"antigo":4.79,"desc_pct":8,"un":"UN","vendidos":17436,"oferta":true,"link":"https://www.spanionline.com.br/produto/228/queijo-ralado-teixeira-tradicional-40g","destaque":false},{"id":822,"nome":"Leite Longa Vida Italac 1l Integral","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/df441e05-6102-4f85-b7bb-50539c1ac5fa.jpg","depto":"Frios e laticinios","preco":5.49,"antigo":5.79,"desc_pct":5,"un":"UN","vendidos":273689,"oferta":true,"link":"https://www.spanionline.com.br/produto/822/leite-longa-vida-italac-1l-integral","destaque":false},{"id":823,"nome":"Leite Longa Vida Italac 1l Semidesnatado","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7a2c2a4e-994b-454b-a8a6-10c916e00b9e.jpg","depto":"Frios e laticinios","preco":5.49,"antigo":5.79,"desc_pct":5,"un":"UN","vendidos":62745,"oferta":true,"link":"https://www.spanionline.com.br/produto/823/leite-longa-vida-italac-1l-semidesnatado","destaque":false},{"id":821,"nome":"Leite Longa Vida Italac 1l Desnatado","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2f933069-87a4-4185-9ba0-8c9fa3ad2a72.jpg","depto":"Frios e laticinios","preco":5.49,"antigo":5.79,"desc_pct":5,"un":"UN","vendidos":44082,"oferta":true,"link":"https://www.spanionline.com.br/produto/821/leite-longa-vida-italac-1l-desnatado","destaque":false},{"id":819,"nome":"Leite Longa Vida Barra Mansa 1l Integral","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/1d615ef7-13a3-4159-93d3-7a33123172e5.jpg","depto":"Frios e laticinios","preco":5.69,"antigo":5.99,"desc_pct":5,"un":"UN","vendidos":25502,"oferta":true,"link":"https://www.spanionline.com.br/produto/819/leite-longa-vida-barra-mansa-1l-integral","destaque":false},{"id":818,"nome":"Leite Longa Vida Barra Mansa 1l Desnatado","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/5bc0ac34-e929-4ba3-9222-ed594080872a.jpg","depto":"Frios e laticinios","preco":5.69,"antigo":5.99,"desc_pct":5,"un":"UN","vendidos":3289,"oferta":true,"link":"https://www.spanionline.com.br/produto/818/leite-longa-vida-barra-mansa-1l-desnatado","destaque":false},{"id":824,"nome":"Leite Longa Vida Italac 1l Tp Semi Desnatado Zero Lactose","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/bb03d071-fe7f-411b-a92d-8efa75b9be2b.jpg","depto":"Frios e laticinios","preco":5.79,"antigo":5.99,"desc_pct":3,"un":"UN","vendidos":41078,"oferta":true,"link":"https://www.spanionline.com.br/produto/824/leite-longa-vida-italac-1l-tp-semi-desnatado-zero-lactose","destaque":false},{"id":817,"nome":"Leite Longa Vida Glória 1l Integral","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/5597f4e1-6c19-494e-869a-e207274f8445.jpg","depto":"Frios e laticinios","preco":4.99,"antigo":5.09,"desc_pct":2,"un":"UN","vendidos":11698,"oferta":true,"link":"https://www.spanionline.com.br/produto/817/leite-longa-vida-gloria-1l-integral","destaque":false},{"id":820,"nome":"Leite Longa Vida Glória 1l Desnatado","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ba0b1e35-4c4e-40bb-8371-1bdcc80e10d1.jpg","depto":"Frios e laticinios","preco":4.99,"antigo":5.09,"desc_pct":2,"un":"UN","vendidos":602,"oferta":true,"link":"https://www.spanionline.com.br/produto/820/leite-longa-vida-gloria-1l-desnatado","destaque":false},{"id":12864,"nome":"Abobrinha Italiana 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0903ddaf-b590-4df7-92dd-69258276aebc.jpg","depto":"Hortifruti","preco":1.9,"antigo":6.0,"desc_pct":68,"un":"KG","vendidos":3433,"oferta":true,"link":"https://www.spanionline.com.br/produto/12864/abobrinha-italiana-500g","destaque":true},{"id":290,"nome":"Maça Gala Pacote 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/d3ae3f93-1fa6-47af-8f83-3305efff153a.jpg","depto":"Hortifruti","preco":4.99,"antigo":8.49,"desc_pct":41,"un":"UN","vendidos":3523,"oferta":true,"link":"https://www.spanionline.com.br/produto/290/maca-gala-pacote-1kg","destaque":true},{"id":12872,"nome":"Batata Doce Roxa 800g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/c7e54723-edb1-46ca-bb75-a0e11edb164d.jpg","depto":"Hortifruti","preco":3.91,"antigo":5.99,"desc_pct":35,"un":"KG","vendidos":2585,"oferta":true,"link":"https://www.spanionline.com.br/produto/12872/batata-doce-roxa-800g","destaque":false},{"id":2757,"nome":"Uva Thompson Bandeja 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/3096368e-422a-48cb-a7c2-a504349d0d30.jpg","depto":"Hortifruti","preco":5.99,"antigo":8.9,"desc_pct":33,"un":"UN","vendidos":3777,"oferta":true,"link":"https://www.spanionline.com.br/produto/2757/uva-thompson-bandeja-500g","destaque":false},{"id":271,"nome":"Desinfetante Para Hortifruti Utilis 300ml","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/43da72b3-867d-4de6-9539-eadca3f23c25.jpg","depto":"Hortifruti","preco":11.9,"antigo":12.9,"desc_pct":8,"un":"UN","vendidos":730,"oferta":true,"link":"https://www.spanionline.com.br/produto/271/desinfetante-para-hortifruti-utilis-300ml","destaque":false},{"id":12790,"nome":"Castanha De Caju Torrada E Salgada Brasil Frutt 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/70807de0-8456-433b-b48a-80adbdc73dbd.jpg","depto":"Hortifruti","preco":39.9,"antigo":43.09,"desc_pct":7,"un":"UN","vendidos":191,"oferta":true,"link":"https://www.spanionline.com.br/produto/12790/castanha-de-caju-torrada-e-salgada-brasil-frutt-200g","destaque":false},{"id":12795,"nome":"Mix De Frutas Secas Brasil Frutt 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f7819a6e-c231-4d50-a610-2786177ebc14.jpg","depto":"Hortifruti","preco":45.9,"antigo":49.57,"desc_pct":7,"un":"UN","vendidos":74,"oferta":true,"link":"https://www.spanionline.com.br/produto/12795/mix-de-frutas-secas-brasil-frutt-200g","destaque":false},{"id":12791,"nome":"Castanha Do Pará Natural Brasil Frutt 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/71854088-b04c-47a4-905f-a821411f0ddb.jpg","depto":"Hortifruti","preco":45.9,"antigo":49.57,"desc_pct":7,"un":"UN","vendidos":34,"oferta":true,"link":"https://www.spanionline.com.br/produto/12791/castanha-do-para-natural-brasil-frutt-200g","destaque":false},{"id":12793,"nome":"Milho Torrado E Salgado Brasil Frutt 160g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/6941e690-6e6d-4cc2-a4d5-6e72cd9bbfd9.jpg","depto":"Hortifruti","preco":21.9,"antigo":23.65,"desc_pct":7,"un":"UN","vendidos":29,"oferta":true,"link":"https://www.spanionline.com.br/produto/12793/milho-torrado-e-salgado-brasil-frutt-160g","destaque":false},{"id":8812,"nome":"Batata Lavada 700g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/8cd3e47e-7a1d-4222-a0d8-b7b1b514c18a.jpg","depto":"Hortifruti","preco":7.04,"antigo":null,"desc_pct":null,"un":"KG","vendidos":11748,"oferta":false,"link":"https://www.spanionline.com.br/produto/8812/batata-lavada-700g","destaque":false},{"id":557,"nome":"Detergente Líquido Limpol 500ml Cristal","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/443debb8-278d-483f-b6b7-9f6a412b4f68.jpg","depto":"Limpeza","preco":1.99,"antigo":2.59,"desc_pct":23,"un":"UN","vendidos":41066,"oferta":true,"link":"https://www.spanionline.com.br/produto/557/detergente-liquido-limpol-500ml-cristal","destaque":true},{"id":556,"nome":"Detergente Líquido Limpol 500ml Coco","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ab0a8fb7-405f-427a-83e5-4a72419b7dba.jpg","depto":"Limpeza","preco":1.99,"antigo":2.59,"desc_pct":23,"un":"UN","vendidos":33792,"oferta":true,"link":"https://www.spanionline.com.br/produto/556/detergente-liquido-limpol-500ml-coco","destaque":false},{"id":560,"nome":"Detergente Líquido Limpol 500ml Neutro","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e735a494-dc2c-4e60-ae32-843bb52bc301.jpg","depto":"Limpeza","preco":1.99,"antigo":2.59,"desc_pct":23,"un":"UN","vendidos":33574,"oferta":true,"link":"https://www.spanionline.com.br/produto/560/detergente-liquido-limpol-500ml-neutro","destaque":false},{"id":558,"nome":"Detergente Líquido Limpol 500ml Limão","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/c829c365-c0b5-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Limpeza","preco":1.99,"antigo":2.59,"desc_pct":23,"un":"UN","vendidos":12718,"oferta":true,"link":"https://www.spanionline.com.br/produto/558/detergente-liquido-limpol-500ml-limao","destaque":false},{"id":559,"nome":"Detergente Líquido Limpol 500ml Maça","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/c848e5a3-c0b5-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Limpeza","preco":1.99,"antigo":2.59,"desc_pct":23,"un":"UN","vendidos":11014,"oferta":true,"link":"https://www.spanionline.com.br/produto/559/detergente-liquido-limpol-500ml-maca","destaque":false},{"id":740,"nome":"Limpador Harpic 500ml Cloroforte","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/659188cb-6d95-402a-857b-410c260d9618.jpg","depto":"Limpeza","preco":10.91,"antigo":13.99,"desc_pct":22,"un":"UN","vendidos":339,"oferta":true,"link":"https://www.spanionline.com.br/produto/740/limpador-harpic-500ml-cloroforte","destaque":true},{"id":66,"nome":"Pedra Sanitária Lipex 25g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/21605e0a-1285-443a-8440-63877ed15d72.jpg","depto":"Limpeza","preco":1.99,"antigo":2.39,"desc_pct":17,"un":"UN","vendidos":11142,"oferta":true,"link":"https://www.spanionline.com.br/produto/66/pedra-sanitaria-lipex-25g","destaque":false},{"id":536,"nome":"Desinfetante Sanol 5l Lavanda","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/8c7dbd45-52a1-4f1f-8215-18b14d311015.jpg","depto":"Limpeza","preco":13.5,"antigo":15.98,"desc_pct":16,"un":"UN","vendidos":5163,"oferta":true,"link":"https://www.spanionline.com.br/produto/536/desinfetante-sanol-5l-lavanda","destaque":false},{"id":534,"nome":"Desinfetante Sanol 5l Eucalipto","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e59b5809-ea4b-4be5-be01-cbed8bfd066a.jpg","depto":"Limpeza","preco":13.5,"antigo":15.98,"desc_pct":16,"un":"UN","vendidos":3050,"oferta":true,"link":"https://www.spanionline.com.br/produto/534/desinfetante-sanol-5l-eucalipto","destaque":false},{"id":532,"nome":"Desinfetante Sanol 2l Lavanda","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f5bfce0d-2a29-4feb-9e17-6946f1f257ec.jpg","depto":"Limpeza","preco":6.79,"antigo":7.79,"desc_pct":13,"un":"UN","vendidos":5209,"oferta":true,"link":"https://www.spanionline.com.br/produto/532/desinfetante-sanol-2l-lavanda","destaque":false},{"id":11156,"nome":"Creme De Leite Piracanjuba 200g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e27245ff-4637-4644-b2d2-d7f6959aa339.jpg","depto":"Matinais e sobremesas","preco":2.69,"antigo":2.99,"desc_pct":10,"un":"UN","vendidos":43025,"oferta":true,"link":"https://www.spanionline.com.br/produto/11156/creme-de-leite-piracanjuba-200g","destaque":false},{"id":11157,"nome":"Leite Condensado Piracanjuba 395g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e7bd0a2b-0d4c-4154-aa55-8dc907ad4047.jpg","depto":"Matinais e sobremesas","preco":6.79,"antigo":7.39,"desc_pct":8,"un":"UN","vendidos":53998,"oferta":true,"link":"https://www.spanionline.com.br/produto/11157/leite-condensado-piracanjuba-395g","destaque":false},{"id":2013,"nome":"Leite Condensado Italac 395g Tp","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ccbcbd04-b0d9-46ce-abb1-96629926fde6.jpg","depto":"Matinais e sobremesas","preco":6.99,"antigo":7.55,"desc_pct":7,"un":"UN","vendidos":123863,"oferta":true,"link":"https://www.spanionline.com.br/produto/2013/leite-condensado-italac-395g-tp","destaque":false},{"id":1929,"nome":"Creme De Leite Italac 200g Tp","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/b6119068-dc19-4d95-b7ff-992fd329c3c2.jpg","depto":"Matinais e sobremesas","preco":2.99,"antigo":3.15,"desc_pct":5,"un":"UN","vendidos":134331,"oferta":true,"link":"https://www.spanionline.com.br/produto/1929/creme-de-leite-italac-200g-tp","destaque":false},{"id":1177,"nome":"Açúcar Refinado União 1kg","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/b7da2770-9a64-4c7d-945f-d931b7a4571d.jpg","depto":"Matinais e sobremesas","preco":3.69,"antigo":3.89,"desc_pct":5,"un":"UN","vendidos":76371,"oferta":true,"link":"https://www.spanionline.com.br/produto/1177/acucar-refinado-uniao-1kg","destaque":false},{"id":766,"nome":"Café Torrado E Moído Melitta 500g Vácuo Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ae0a3fc8-c0b2-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Matinais e sobremesas","preco":23.9,"antigo":24.9,"desc_pct":4,"un":"UN","vendidos":22376,"oferta":true,"link":"https://www.spanionline.com.br/produto/766/cafe-torrado-e-moido-melitta-500g-vacuo-tradicional","destaque":false},{"id":774,"nome":"Café Torrado E Moído Pilão 500g Almofada Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/639a1457-9f8f-48b7-a64e-2692578ac108.jpg","depto":"Matinais e sobremesas","preco":22.9,"antigo":23.9,"desc_pct":4,"un":"UN","vendidos":18749,"oferta":true,"link":"https://www.spanionline.com.br/produto/774/cafe-torrado-e-moido-pilao-500g-almofada-tradicional","destaque":false},{"id":772,"nome":"Café Torrado E Moído Pilão 500g Almofada Extraforte","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/538bc96c-6f05-47fd-9f0f-72ab3d9cfff8.jpg","depto":"Matinais e sobremesas","preco":22.9,"antigo":23.9,"desc_pct":4,"un":"UN","vendidos":5474,"oferta":true,"link":"https://www.spanionline.com.br/produto/772/cafe-torrado-e-moido-pilao-500g-almofada-extraforte","destaque":false},{"id":770,"nome":"Café Torrado E Moído Pilão 250g Almofada Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/792f00e6-b307-4bcb-aba9-93b97c82d814.jpg","depto":"Matinais e sobremesas","preco":11.45,"antigo":11.95,"desc_pct":4,"un":"UN","vendidos":4902,"oferta":true,"link":"https://www.spanionline.com.br/produto/770/cafe-torrado-e-moido-pilao-250g-almofada-tradicional","destaque":false},{"id":1370,"nome":"Óleo De Soja Leve 900ml Pet","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7e482cbc-67d6-487a-9c69-c6c09f41a6d0.jpg","depto":"Mercearia","preco":6.99,"antigo":7.89,"desc_pct":11,"un":"UN","vendidos":60592,"oferta":true,"link":"https://www.spanionline.com.br/produto/1370/oleo-de-soja-leve-900ml-pet","destaque":false},{"id":169,"nome":"Mostarda Quero 190g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/513eb8c7-46c9-4ff2-9f41-48279042c2e6.jpg","depto":"Mercearia","preco":5.09,"antigo":5.69,"desc_pct":11,"un":"UN","vendidos":3328,"oferta":true,"link":"https://www.spanionline.com.br/produto/169/mostarda-quero-190g","destaque":false},{"id":1481,"nome":"Macarrão Instantâneo Nissin Galinha Caipira 85g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/34ad16a5-69bd-4482-9fec-edf2bff60062.jpg","depto":"Mercearia","preco":2.69,"antigo":2.99,"desc_pct":10,"un":"UN","vendidos":49825,"oferta":true,"link":"https://www.spanionline.com.br/produto/1481/macarrao-instantaneo-nissin-galinha-caipira-85g","destaque":false},{"id":168,"nome":"Mostarda Predilecta 180g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/23eae899-e998-40de-bd75-11918e77e4ad.jpg","depto":"Mercearia","preco":4.09,"antigo":4.49,"desc_pct":9,"un":"UN","vendidos":1770,"oferta":true,"link":"https://www.spanionline.com.br/produto/168/mostarda-predilecta-180g","destaque":false},{"id":173,"nome":"Óleo Composto Maria Tradicional 200ml Lata","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/5e8109df-99ac-469f-9f3f-3b9da44aefbf.jpg","depto":"Mercearia","preco":10.79,"antigo":11.89,"desc_pct":9,"un":"UN","vendidos":572,"oferta":true,"link":"https://www.spanionline.com.br/produto/173/oleo-composto-maria-tradicional-200ml-lata","destaque":false},{"id":174,"nome":"Óleo Composto Maria Tradicional 500ml Lata","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/aad0bca1-3326-4446-a144-b4199fb2f9a2.jpg","depto":"Mercearia","preco":17.89,"antigo":19.69,"desc_pct":9,"un":"UN","vendidos":538,"oferta":true,"link":"https://www.spanionline.com.br/produto/174/oleo-composto-maria-tradicional-500ml-lata","destaque":false},{"id":160,"nome":"Molho Para Salada Oruam Rose 240ml","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/611b5100-494d-4d88-9735-1a90bfc972ba.jpg","depto":"Mercearia","preco":4.65,"antigo":5.09,"desc_pct":9,"un":"UN","vendidos":347,"oferta":true,"link":"https://www.spanionline.com.br/produto/160/molho-para-salada-oruam-rose-240ml","destaque":false},{"id":2686,"nome":"Milho Verde Quero Lata 170g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e2865d3b-1520-49c0-be53-7268e50cf9d7.jpg","depto":"Mercearia","preco":3.49,"antigo":3.79,"desc_pct":8,"un":"UN","vendidos":49753,"oferta":true,"link":"https://www.spanionline.com.br/produto/2686/milho-verde-quero-lata-170g","destaque":false},{"id":187,"nome":"Palmito Pupunha Golden 270g Inteiro","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/81c7754b-c0b8-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Mercearia","preco":20.29,"antigo":21.99,"desc_pct":8,"un":"UN","vendidos":9271,"oferta":true,"link":"https://www.spanionline.com.br/produto/187/palmito-pupunha-golden-270g-inteiro","destaque":false},{"id":238,"nome":"Sardinha Gomes Da Costa Óleo 125g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e814b514-919c-4a92-a069-dfa5b97d5c30.jpg","depto":"Mercearia","preco":4.69,"antigo":5.09,"desc_pct":8,"un":"UN","vendidos":9166,"oferta":true,"link":"https://www.spanionline.com.br/produto/238/sardinha-gomes-da-costa-oleo-125g","destaque":false},{"id":5231,"nome":"Bisnaguinha Kim 300g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/6f684005-18c1-4649-b8fd-6509a750af44.jpg","depto":"Padaria","preco":4.89,"antigo":6.99,"desc_pct":30,"un":"UN","vendidos":4863,"oferta":true,"link":"https://www.spanionline.com.br/produto/5231/bisnaguinha-kim-300g","destaque":true},{"id":5618,"nome":"Pão Hot Dog Pacote Com 10 Unidades","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f45cc086-eee3-434d-8f74-36191059ec0f.jpg","depto":"Padaria","preco":9.99,"antigo":10.79,"desc_pct":7,"un":"UN","vendidos":3174,"oferta":true,"link":"https://www.spanionline.com.br/produto/5618/pao-hot-dog-pacote-com-10-unidades","destaque":false},{"id":5566,"nome":"Pão De Forma Panco 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/ccf8f612-b1fd-4ccd-97ba-795d3c72c305.jpg","depto":"Padaria","preco":7.79,"antigo":null,"desc_pct":null,"un":"UN","vendidos":24508,"oferta":false,"link":"https://www.spanionline.com.br/produto/5566/pao-de-forma-panco-500g","destaque":false},{"id":5233,"nome":"Bisnaguinha Panco 300g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/b1bf8abf-aba6-4644-a817-fa606bdffd06.jpg","depto":"Padaria","preco":9.98,"antigo":null,"desc_pct":null,"un":"UN","vendidos":21434,"oferta":false,"link":"https://www.spanionline.com.br/produto/5233/bisnaguinha-panco-300g","destaque":false},{"id":5582,"nome":"Pão De Forma Seven Boys 450g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/aed924bb-2471-484a-abd8-c13666f3fb55.jpg","depto":"Padaria","preco":7.99,"antigo":null,"desc_pct":null,"un":"UN","vendidos":9910,"oferta":false,"link":"https://www.spanionline.com.br/produto/5582/pao-de-forma-seven-boys-450g","destaque":false},{"id":5238,"nome":"Bisnaguinha Seven Boys 300g Tradicional","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/da569423-c0b2-11e7-a6aa-063e6e4e9f3a.jpg","depto":"Padaria","preco":5.9,"antigo":null,"desc_pct":null,"un":"UN","vendidos":8510,"oferta":false,"link":"https://www.spanionline.com.br/produto/5238/bisnaguinha-seven-boys-300g-tradicional","destaque":false},{"id":5589,"nome":"Pão De Forma Wickbold 450g Integral","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0beb9449-f8bf-4bc2-9958-8c87c2386b3e.jpg","depto":"Padaria","preco":10.99,"antigo":null,"desc_pct":null,"un":"UN","vendidos":8330,"oferta":false,"link":"https://www.spanionline.com.br/produto/5589/pao-de-forma-wickbold-450g-integral","destaque":false},{"id":5603,"nome":"Pão De Milho Panco 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/916d16e3-f512-4f81-8df1-9bed88e210a7.jpg","depto":"Padaria","preco":12.99,"antigo":null,"desc_pct":null,"un":"UN","vendidos":6669,"oferta":false,"link":"https://www.spanionline.com.br/produto/5603/pao-de-milho-panco-500g","destaque":false},{"id":5607,"nome":"Pão Egg Esponge Panco 250g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9f4d0629-a891-4547-9dee-d84d41e598cb.jpg","depto":"Padaria","preco":15.29,"antigo":null,"desc_pct":null,"un":"UN","vendidos":6351,"oferta":false,"link":"https://www.spanionline.com.br/produto/5607/pao-egg-esponge-panco-250g","destaque":false},{"id":5197,"nome":"Ana Maria Pullman 70g Gotas De Chocolate","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/feb6d6a7-6854-47c5-b413-1d54647a07d6.jpg","depto":"Padaria","preco":5.49,"antigo":null,"desc_pct":null,"un":"UN","vendidos":4436,"oferta":false,"link":"https://www.spanionline.com.br/produto/5197/ana-maria-pullman-70g-gotas-de-chocolate","destaque":false},{"id":38,"nome":"Papel Higienico Folha Dupla Cotton Leve 12 Pague 11","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/c223bc69-879f-4ab3-981d-30576d57b4a7.jpg","depto":"Perfumaria e higiene","preco":13.9,"antigo":16.9,"desc_pct":18,"un":"UN","vendidos":20480,"oferta":true,"link":"https://www.spanionline.com.br/produto/38/papel-higienico-folha-dupla-cotton-leve-12-pague-11","destaque":false},{"id":54,"nome":"Papel Higiênico Neutro 30m Folha Simples Sublime Com 4 Unidades","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/7d577601-3dff-46ce-8b76-288634095e4a.jpg","depto":"Perfumaria e higiene","preco":3.39,"antigo":3.79,"desc_pct":11,"un":"UN","vendidos":9563,"oferta":true,"link":"https://www.spanionline.com.br/produto/54/papel-higienico-neutro-30m-folha-simples-sublime-com-4-unidades","destaque":false},{"id":41,"nome":"Papel Higiênico Folha Dupla Neve Toque De Seda 30m C/4","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/641772ba-e8f1-48bf-9ed0-23017f7d2d59.jpg","depto":"Perfumaria e higiene","preco":7.9,"antigo":8.9,"desc_pct":11,"un":"UN","vendidos":8377,"oferta":true,"link":"https://www.spanionline.com.br/produto/41/papel-higienico-folha-dupla-neve-toque-de-seda-30m-c4","destaque":false},{"id":6606,"nome":"Sabonete Dove 90g Original","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/22175b34-1413-460b-9ce0-073a396769e7.jpg","depto":"Perfumaria e higiene","preco":4.69,"antigo":5.19,"desc_pct":10,"un":"UN","vendidos":37736,"oferta":true,"link":"https://www.spanionline.com.br/produto/6606/sabonete-dove-90g-original","destaque":false},{"id":44,"nome":"Papel Higiênico Folha Dupla Neve 30m Compacto Leve 24 Pague 21 Seda","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/1fadeaf0-8d56-476c-8070-835b8d7610dd.jpg","depto":"Perfumaria e higiene","preco":38.9,"antigo":42.9,"desc_pct":9,"un":"UN","vendidos":14046,"oferta":true,"link":"https://www.spanionline.com.br/produto/44/papel-higienico-folha-dupla-neve-30m-compacto-leve-24-pague-21-seda","destaque":false},{"id":39,"nome":"Papel Higienico Folha Dupla Cotton Leve 24 Pague 22","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/c2a5bcac-b8eb-45aa-bc7b-caafa3651dd1.jpg","depto":"Perfumaria e higiene","preco":30.9,"antigo":33.9,"desc_pct":9,"un":"UN","vendidos":13729,"oferta":true,"link":"https://www.spanionline.com.br/produto/39/papel-higienico-folha-dupla-cotton-leve-24-pague-22","destaque":false},{"id":50,"nome":"Papel Higiênico Folha Tripla Neve 20m Leve 24 Pague 21 Unidades","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2f43379c-08d9-45d7-8470-5a151c582803.jpg","depto":"Perfumaria e higiene","preco":39.9,"antigo":43.9,"desc_pct":9,"un":"UN","vendidos":9335,"oferta":true,"link":"https://www.spanionline.com.br/produto/50/papel-higienico-folha-tripla-neve-20m-leve-24-pague-21-unidades","destaque":false},{"id":698,"nome":"Lenço De Papel Folha Dupla Elite Com 50 Unidades","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/bb4187f4-138d-4f1c-84e3-12dc80116d7e.jpg","depto":"Perfumaria e higiene","preco":4.99,"antigo":5.49,"desc_pct":9,"un":"UN","vendidos":774,"oferta":true,"link":"https://www.spanionline.com.br/produto/698/lenco-de-papel-folha-dupla-elite-com-50-unidades","destaque":false},{"id":704,"nome":"Lenço Kleenex Leve 60 Pague 50 Unidades Box","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/b95e0f62-c302-42c2-b908-358b786c96ec.jpg","depto":"Perfumaria e higiene","preco":5.19,"antigo":5.69,"desc_pct":9,"un":"UN","vendidos":72,"oferta":true,"link":"https://www.spanionline.com.br/produto/704/lenco-kleenex-leve-60-pague-50-unidades-box","destaque":false},{"id":702,"nome":"Lenço De Papel Kleenex Leve 100 Pague 80 Box","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/8a2a135a-491c-4ffb-88ee-ad6d888dc3ff.jpg","depto":"Perfumaria e higiene","preco":8.29,"antigo":8.89,"desc_pct":7,"un":"UN","vendidos":1183,"oferta":true,"link":"https://www.spanionline.com.br/produto/702/lenco-de-papel-kleenex-leve-100-pague-80-box","destaque":false},{"id":5089,"nome":"Petisco Baw Waw Bifinho Para Cães Adultos Raças Pequenas Sabor Frango 50g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/f45faa95-5496-4340-b6e5-c77dd91bf02a.jpg","depto":"Pet","preco":3.29,"antigo":3.62,"desc_pct":9,"un":"UN","vendidos":1464,"oferta":true,"link":"https://www.spanionline.com.br/produto/5089/petisco-baw-waw-bifinho-para-caes-adultos-racas-pequenas-sabor-frango-50g","destaque":false},{"id":5090,"nome":"Petisco Baw Waw Bifinho Para Cães Adultos Sabor Carne 50g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/75bbbcbb-88be-4299-867f-cefdfc050a2c.jpg","depto":"Pet","preco":3.29,"antigo":3.62,"desc_pct":9,"un":"UN","vendidos":1155,"oferta":true,"link":"https://www.spanionline.com.br/produto/5090/petisco-baw-waw-bifinho-para-caes-adultos-sabor-carne-50g","destaque":false},{"id":5092,"nome":"Petisco Dreamies Para Gatos Adultos Sabor Carne 40g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2625f2be-b69c-484c-b680-9d987ac6c396.jpg","depto":"Pet","preco":6.49,"antigo":7.14,"desc_pct":9,"un":"UN","vendidos":798,"oferta":true,"link":"https://www.spanionline.com.br/produto/5092/petisco-dreamies-para-gatos-adultos-sabor-carne-40g","destaque":false},{"id":5093,"nome":"Petisco Dreamies Para Gatos Adultos Sabor Frango 40g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/0d88aed1-dbc2-4a24-83ec-8f0c1645afbc.jpg","depto":"Pet","preco":6.49,"antigo":7.14,"desc_pct":9,"un":"UN","vendidos":542,"oferta":true,"link":"https://www.spanionline.com.br/produto/5093/petisco-dreamies-para-gatos-adultos-sabor-frango-40g","destaque":false},{"id":5088,"nome":"Petisco Baw Waw Bifinho Para Cães Adultos Raças Pequenas Sabor Carne 50g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/2029c898-43af-4932-b0c1-1e99873e8303.jpg","depto":"Pet","preco":3.29,"antigo":3.62,"desc_pct":9,"un":"UN","vendidos":440,"oferta":true,"link":"https://www.spanionline.com.br/produto/5088/petisco-baw-waw-bifinho-para-caes-adultos-racas-pequenas-sabor-carne-50g","destaque":false},{"id":5091,"nome":"Petisco Doguitos Rodízio Para Cães Adultos E Filhotes Sabor Carne 65g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9d20d000-9111-4e88-9308-8245e09080f6.jpg","depto":"Pet","preco":6.39,"antigo":7.03,"desc_pct":9,"un":"UN","vendidos":316,"oferta":true,"link":"https://www.spanionline.com.br/produto/5091/petisco-doguitos-rodizio-para-caes-adultos-e-filhotes-sabor-carne-65g","destaque":false},{"id":4947,"nome":"Biscoito Pedigree Biscrok Junior Para Cães Filhotes 300g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/e4c69f66-4586-4074-8e54-03c809ed4d21.jpg","depto":"Pet","preco":19.9,"antigo":21.89,"desc_pct":9,"un":"UN","vendidos":313,"oferta":true,"link":"https://www.spanionline.com.br/produto/4947/biscoito-pedigree-biscrok-junior-para-caes-filhotes-300g","destaque":false},{"id":4948,"nome":"Biscoito Pedigree Biscrok Mini Para Cães Adultos Raças Pequenas 500g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/dc055c66-a7e9-45fd-9ca9-30f027b79478.jpg","depto":"Pet","preco":22.9,"antigo":25.19,"desc_pct":9,"un":"UN","vendidos":254,"oferta":true,"link":"https://www.spanionline.com.br/produto/4948/biscoito-pedigree-biscrok-mini-para-caes-adultos-racas-pequenas-500g","destaque":false},{"id":4945,"nome":"Biscoito Doguitos Para Cães Adultos Sabor Frango 65g","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/50318820-dc39-4c2e-a929-f6d415d5e4a1.jpg","depto":"Pet","preco":6.39,"antigo":7.03,"desc_pct":9,"un":"UN","vendidos":236,"oferta":true,"link":"https://www.spanionline.com.br/produto/4945/biscoito-doguitos-para-caes-adultos-sabor-frango-65g","destaque":false},{"id":5175,"nome":"Shampoo Sanol Dog Antipulgas 500ml","img":"https://produto-assets-vipcommerce-com-br.br-se1.magaluobjects.com/500x500/9fbbf76a-562b-422c-b196-d1fad8142c4b.jpg","depto":"Pet","preco":24.9,"antigo":27.39,"desc_pct":9,"un":"UN","vendidos":199,"oferta":true,"link":"https://www.spanionline.com.br/produto/5175/shampoo-sanol-dog-antipulgas-500ml","destaque":false}];
+(function () {
+  var WA = "551236348700";
+  var LOJA = "Comercial Zaragoza (Zaragoza Empório), CNPJ [preencher CNPJ da empresa], com sede em [preencher endereço da loja] — Taubaté/SP. WhatsApp da loja: (12) 3634-8700";
+  var DOCS = {
+    privacidade: ["Política de Privacidade", [
+      "Controladora dos dados: " + LOJA + ".",
+      "Dados coletados: somente as informações que você digita no formulário de contato (nome, e-mail, telefone opcional, assunto e mensagem).",
+      "Finalidade e base legal: responder ao seu contato, com base no seu consentimento (art. 7º, I, da LGPD). Não vendemos, alugamos nem compartilhamos seus dados para fins de marketing.",
+      "Retenção: os dados são mantidos apenas pelo tempo necessário para o atendimento ou para cumprimento de obrigação legal.",
+      "Seus direitos: confirmar, acessar, corrigir, solicitar exclusão ou revogar o consentimento a qualquer momento, pelo WhatsApp (12) 3634-8700.",
+      "Cookies: esta página não utiliza cookies próprios de publicidade. Ferramentas de terceiros eventualmente usadas para medir campanhas seguem as políticas de seus provedores."]],
+    termos: ["Termos de Uso", [
+      "Este site é mantido por " + LOJA + ".",
+      "O conteúdo tem caráter exclusivamente informativo e institucional. Este site não é uma loja virtual: não há catálogo, preços, carrinho ou compra online. Preços, ofertas e disponibilidade são informados apenas na loja física.",
+      "As descrições de departamentos refletem a operação da loja de forma geral e podem variar conforme a época do ano e o estoque.",
+      "Imagens ilustrativas podem não representar produtos ou instalações específicas da loja."]],
+    aviso: ["Aviso Legal e Transparência", [
+      "Este é um projeto independente, publicado por " + LOJA + ", único responsável por seu conteúdo.",
+      "A loja não é canal oficial, parceira autorizada nem representante de fabricantes, marcas, órgãos públicos ou quaisquer outras empresas.",
+      "Marcas de fabricantes eventualmente mencionadas pertencem aos seus titulares e são citadas apenas para fins de identificação.",
+      "Esta página não divulga ofertas, descontos, comparações de preço ou promoções com prazo — comunicações comerciais são feitas somente nos canais oficiais da loja."]]
+  };
 
-const BRL = v => {
-  const [i, c] = v.toFixed(2).split('.');
-  return `<span class="cur">R$</span>${parseInt(i).toLocaleString('pt-BR')}<span class="cents">,${c}</span>`;
-};
-const BRLplain = v => v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
-const norm = s => (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-const WA_NUMBER = '551236348700';
-const WA_ICON = '<svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.25 8.24m4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28"/></svg>';
-const waLink = p => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Olá! Vi no catálogo Zaragoza e quero pedir:\n\n• ${p.nome}\n  ${BRLplain(p.preco)}${p.antigo ? ` (de ${BRLplain(p.antigo)})` : ''}\n\nPode confirmar disponibilidade?`)}`;
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-gsap.registerPlugin(ScrollTrigger);
-const lenis = new Lenis({lerp:.09, wheelMultiplier:1});
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(t => lenis.raf(t*1000));
-gsap.ticker.lagSmoothing(0);
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const t = document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault(); lenis.scrollTo(t, {offset:-70, duration:1.4});}
+  // Lenis smooth scroll
+  var lenis = window.Lenis ? new Lenis({ duration: 1.25, smoothWheel: true }) : null;
+  if (lenis) { (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0); }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var el = document.querySelector(a.getAttribute("href"));
+      if (!el) return;
+      e.preventDefault();
+      document.getElementById("mobileMenu").classList.add("hidden");
+      if (lenis) lenis.scrollTo(el, { offset: -72, duration: 1.4 }); else el.scrollIntoView({ behavior: "smooth" });
+    });
   });
-});
 
-const header = document.getElementById('header');
-ScrollTrigger.create({start:40, onUpdate:s=>header.classList.toggle('scrolled', s.scroll()>40)});
+  // Mobile menu
+  document.getElementById("menuBtn").addEventListener("click", function () {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  });
 
-window.addEventListener('load', ()=>{
-  gsap.timeline({defaults:{ease:'power4.out'}})
-    .to('#hero-title .line > span', {y:0, duration:1.25, stagger:.13, delay:.15})
-    .from('.hero-eyebrow, .hero-sub, .hero-cta-row, .hero-stats', {opacity:0, y:26, duration:.9, stagger:.09}, '-=.8')
-    .from('.hero-frame', {opacity:0, y:60, rotate:5, duration:1.2, ease:'power3.out'}, '-=1.1')
-    .from('.hero-badge-float', {opacity:0, y:30, scale:.85, duration:.8, ease:'back.out(1.8)'}, '-=.6');
-});
+  // Scroll reveals
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
-gsap.to('#hero-img', {yPercent:-10, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
+  // Parallax
+  var bg = document.getElementById("heroBg"), team = document.getElementById("teamImg");
+  function onScroll() {
+    var y = window.scrollY;
+    if (bg) bg.style.transform = "translateY(" + y * 0.25 + "px)";
+    if (team) {
+      var r = team.parentElement.getBoundingClientRect();
+      var p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      team.style.transform = "translateY(" + (-p * 8) + "%)";
+    }
+  }
+  addEventListener("scroll", onScroll, { passive: true });
 
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const target = +el.dataset.count;
-  const sup = el.querySelector('sup');
-  ScrollTrigger.create({trigger:el, start:'top 90%', once:true, onEnter:()=>{
-    const o = {v:0};
-    gsap.to(o, {v:target, duration:1.6, ease:'power2.out', onUpdate:()=>{
-      el.childNodes.forEach(n=>{ if(n.nodeType===3) n.remove(); });
-      el.appendChild(document.createTextNode(Math.round(o.v) + (el.dataset.suffix||'')));
-      if(sup) el.prepend(sup);
-    }});
-  }});
-});
+  // 3D tilt
+  var tilt = document.getElementById("tilt");
+  tilt.parentElement.addEventListener("mousemove", function (e) {
+    var r = tilt.getBoundingClientRect();
+    var ry = ((e.clientX - r.left) / r.width - 0.5) * 14, rx = -((e.clientY - r.top) / r.height - 0.5) * 14;
+    tilt.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+  });
+  tilt.parentElement.addEventListener("mouseleave", function () { tilt.style.transform = ""; });
 
-const words = ['Ofertas da semana','Preço de atacado','Hortifruti fresco','Açougue &amp; churrasco','Adega selecionada','Padaria quentinha','Mercearia completa','Economia de verdade'];
-const track = document.getElementById('marquee-track');
-const star = '<svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>';
-track.innerHTML = [...words, ...words].map(w=>`<span class="marquee-item">${w} ${star}</span>`).join('');
+  // Legal dialog
+  var dlg = document.getElementById("legal");
+  document.querySelectorAll("[data-doc]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var d = DOCS[b.getAttribute("data-doc")];
+      document.getElementById("legalTitle").textContent = d[0];
+      document.getElementById("legalBody").innerHTML = d[1].map(function (p) { return "<p>" + p + "</p>"; }).join("");
+      dlg.showModal();
+    });
+  });
+  document.getElementById("legalClose").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
 
-const bento = document.getElementById('bento');
-const feats = PRODUCTS.filter(p=>p.destaque).sort((a,b)=>(b.desc_pct||0)-(a.desc_pct||0));
-bento.innerHTML = feats.map((p,i)=>`
-  <article class="bcard ${i===0?'bcard--hero':''} reveal" data-testid="featured-card-${p.id}">
-    ${p.desc_pct?`<span class="badge-off" data-testid="featured-badge-${p.id}">−${p.desc_pct}%</span>`:''}
-    <div class="bcard-img"><img src="${p.img}" alt="${p.nome}" loading="${i<2?'eager':'lazy'}" onerror="this.style.opacity=0"></div>
-    <div class="bcard-body">
-      <span class="bcard-dept">${p.depto}</span>
-      <span class="bcard-name">${p.nome}</span>
-      <div class="bcard-price-row">
-        ${p.antigo?`<span class="price-old">${BRLplain(p.antigo)}</span>`:''}
-        <span class="price">${BRL(p.preco)}</span>
-      </div>
-      <a class="wa-btn ${i===0?'':'wa-btn--sm'}" href="${waLink(p)}" target="_blank" rel="noopener" data-testid="wa-order-${p.id}">${WA_ICON} Pedir no WhatsApp</a>
-    </div>
-  </article>`).join('');
-
-const grid = document.getElementById('grid');
-const tabsEl = document.getElementById('tabs');
-const searchEl = document.getElementById('search');
-const countEl = document.getElementById('result-count');
-const emptyEl = document.getElementById('grid-empty');
-const deptos = [...new Set(PRODUCTS.map(p=>p.depto))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
-let activeDep = 'Todos', query = '';
-
-tabsEl.innerHTML = ['Todos', ...deptos].map(d=>
-  `<button class="tab ${d==='Todos'?'active':''}" data-dep="${d}" data-testid="tab-${norm(d).replace(/\s+/g,'-')}">${d}</button>`).join('');
-
-tabsEl.addEventListener('click', e=>{
-  const btn = e.target.closest('.tab'); if(!btn) return;
-  tabsEl.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  activeDep = btn.dataset.dep;
-  render(true);
-});
-searchEl.addEventListener('input', ()=>{ query = norm(searchEl.value.trim()); render(false); });
-
-function cardHTML(p){
-  return `<article class="pcard" data-testid="product-card-${p.id}">
-    ${p.desc_pct?`<span class="badge-off" data-testid="discount-badge-${p.id}">−${p.desc_pct}%</span>`:''}
-    <div class="pcard-img"><img src="${p.img}" alt="${p.nome}" loading="lazy" onerror="this.style.opacity=0"></div>
-    <div class="pcard-body">
-      <span class="pcard-dept">${p.depto}</span>
-      <h3 class="pcard-name">${p.nome}</h3>
-      <div class="pcard-price-row">
-        ${p.antigo?`<span class="price-old" data-testid="price-old-${p.id}">${BRLplain(p.antigo)}</span>`:''}
-        <span class="price" data-testid="price-${p.id}">${BRL(p.preco)}</span>
-      </div>
-      <a class="wa-btn" href="${waLink(p)}" target="_blank" rel="noopener" data-testid="wa-order-${p.id}">${WA_ICON} Pedir no WhatsApp</a>
-    </div>
-  </article>`;
-}
-
-function render(animate){
-  const list = PRODUCTS.filter(p =>
-    (activeDep==='Todos' || p.depto===activeDep) &&
-    (!query || norm(p.nome).includes(query))
-  );
-  grid.innerHTML = list.map(cardHTML).join('');
-  emptyEl.style.display = list.length ? 'none' : 'block';
-  countEl.innerHTML = list.length
-    ? `Exibindo <strong>${list.length}</strong> ${list.length===1?'produto':'produtos'}${activeDep!=='Todos'?' em '+activeDep:''}${query?' para &ldquo;'+searchEl.value.trim()+'&rdquo;':''}`
-    : '';
-  gsap.fromTo('.pcard', {opacity:0, y:26}, {opacity:1, y:0, duration:animate?.55:.4, stagger:{each:.022, grid:'auto'}, ease:'power3.out', overwrite:true, clearProps:'transform'});
-}
-render(false);
-
-gsap.utils.toArray('.reveal').forEach(el=>{
-  gsap.to(el, {opacity:1, y:0, duration:1, ease:'power3.out',
-    scrollTrigger:{trigger:el, start:'top 88%', once:true}});
-});
-
-document.getElementById('year').textContent = new Date().getFullYear();
+  // Contact form -> WhatsApp
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = new FormData(e.target);
+    var body = "Olá! Falo em nome de " + f.get("nome") +
+      "\nAssunto: " + f.get("assunto") +
+      "\nE-mail: " + f.get("email") +
+      "\nTelefone: " + (f.get("telefone") || "-") +
+      "\n\n" + f.get("mensagem") +
+      "\n\n[Consentimento LGPD concedido]";
+    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(body), "_blank");
+  });
+})();
 </script>
 </body>
 </html>
